@@ -1,0 +1,47 @@
+<?php
+
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreatePostsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('posts', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('titulo', 60);
+            $table->string('link', 120);
+            $table->string('imagem', 50);
+            $table->text('descricao', 160);
+            $table->string('autor', 50);
+            $table->integer('gostei');
+            $table->integer('categoria_id')->unsigned();
+            $table->foreign('categoria_id')->references('id')->on('categorias'); //tabela categoria
+            $table->dateTime('dt_cadastro');
+            $table->dateTime('dt_alteracao');
+            $table->dateTime('dt_exclusao');
+            $table->integer('cadastro_usuario_id');
+            $table->foreign('cadastro_usuario_id')->references('id')->on('users');
+            $table->integer('alteracao_usuario_id');
+            $table->foreign('alteracao_usuario_id')->references('id')->on('users');
+            $table->integer('exclusao_usuario_id');
+            $table->foreign('exclusao_usuario_id')->references('id')->on('users');
+            $table->boolean('ativo');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('posts');
+    }
+}
