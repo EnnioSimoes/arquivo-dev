@@ -17,8 +17,8 @@ class CreateCategoriasTable extends Migration
             $table->engine = 'InnoDB';
             
             $table->increments('id');
-            $table->string('nome');
-            $table->string('slug');
+            $table->string('nome', 60);
+            $table->string('slug', 120);
             $table->dateTime('dt_cadastro');
             $table->dateTime('dt_alteracao');
             $table->dateTime('dt_exclusao');

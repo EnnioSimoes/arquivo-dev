@@ -23,4 +23,9 @@ class Categoria extends Model
     {
         return $this->hasMany(Post::class);
     }
+
+    public function usuario()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostsTable extends Migration
+class CreateSitesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,18 +12,19 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('sites', function (Blueprint $table) {
             
             $table->engine = 'InnoDB';
             
             $table->increments('id');
-            $table->string('titulo', 60);
+            $table->string('nome', 60);
             $table->string('link', 120);
-            $table->string('imagem', 50);
-            $table->text('descricao', 160);
-            $table->string('autor', 50);
-            $table->integer('gostei');
-            $table->integer('categoria_id')->unsigned()->nullable();
+            $table->string('logotipo', 60);
+            $table->string('facebook', 160);
+            $table->string('youtube', 160);
+            $table->string('github', 160);
+            $table->string('googleplus', 160);
+            $table->string('twitter', 160);
             $table->dateTime('dt_cadastro');
             $table->dateTime('dt_alteracao');
             $table->dateTime('dt_exclusao');
@@ -32,10 +33,10 @@ class CreatePostsTable extends Migration
             $table->integer('exclusao_usuario_id')->unsigned()->nullable();
             $table->boolean('ativo')->default(1);
             
-            $table->foreign('categoria_id')->references('id')->on('categorias')->on_update('cascade')->on_delete('cascade'); //tabela categoria
             $table->foreign('cadastro_usuario_id')->references('id')->on('users')->on_update('cascade')->on_delete('cascade');
             $table->foreign('alteracao_usuario_id')->references('id')->on('users')->on_update('cascade')->on_delete('cascade');
             $table->foreign('exclusao_usuario_id')->references('id')->on('users')->on_update('cascade')->on_delete('cascade');            
+        
         });
     }
 
@@ -46,6 +47,6 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('posts');
+        //
     }
 }

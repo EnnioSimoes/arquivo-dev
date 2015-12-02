@@ -41,7 +41,7 @@ $factory->define(App\Model\Post::class, function (Faker\Generator $faker) {
         'descricao' => $faker->word,
         'autor' => $faker->name,
         'gostei' => rand(0, 50),
-        'categoria_id' => null,
+        'categoria_id' => rand(1, 15),
         'dt_cadastro' => date('Y-m-d H:m:s'),
         'dt_alteracao' => '',
         'dt_exclusao' => '',
