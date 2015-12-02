@@ -16,6 +16,8 @@ class Categoria extends Model
         'alteracao_usuario_id',
         'exclusao_usuario_id',
     ];
+
+    public $timestamps = false;
     
     public function post()
     {

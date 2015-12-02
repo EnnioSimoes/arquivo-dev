@@ -22,6 +22,8 @@ class Post extends Model
         'exclusao_usuario_id',
         'ativo'
     ];
+
+    public $timestamps = false;
     
     public function categoria()
     {

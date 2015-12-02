@@ -27,8 +27,27 @@ $factory->define(App\Model\Categoria::class, function (Faker\Generator $faker) {
         'dt_cadastro' => date('Y-m-d H:m:s'),
         'dt_alteracao' => '',
         'dt_exclusao' => '',
-        'cadastro_usuario_id' => rand(0, 15),
+        'cadastro_usuario_id' => null,
         'alteracao_usuario_id' => null,
         'exclusao_usuario_id' => null,
+    ];
+});
+
+$factory->define(App\Model\Post::class, function (Faker\Generator $faker) {
+    return [       
+        'titulo' => $faker->word,
+        'link' => $faker->url,
+        'imagem' => 'http://placehold.it/350x150',
+        'descricao' => $faker->word,
+        'autor' => $faker->name,
+        'gostei' => rand(0, 50),
+        'categoria_id' => null,
+        'dt_cadastro' => date('Y-m-d H:m:s'),
+        'dt_alteracao' => '',
+        'dt_exclusao' => '',
+        'cadastro_usuario_id' => null,
+        'alteracao_usuario_id' => null,
+        'exclusao_usuario_id' => null,
+        'ativo' => rand(0, 1),
     ];
 });
