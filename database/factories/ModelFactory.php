@@ -51,3 +51,23 @@ $factory->define(App\Model\Post::class, function (Faker\Generator $faker) {
         'ativo' => rand(0, 1),
     ];
 });
+
+$factory->define(App\Model\Site::class, function (Faker\Generator $faker) {
+    return [       
+        'nome' => $faker->company,
+        'link' => $faker->url,
+        'logotipo' => 'http://placehold.it/350x150',
+        'facebook' => $faker->url,
+        'youtube' => $faker->url,
+        'github' => $faker->url,
+        'googleplus' => $faker->url,
+        'twitter' => $faker->url,
+        'dt_cadastro' => date('Y-m-d H:m:s'),
+        'dt_alteracao' => '',
+        'dt_exclusao' => '',
+        'cadastro_usuario_id' => null,
+        'alteracao_usuario_id' => null,
+        'exclusao_usuario_id' => null,
+        'ativo' => rand(0, 1),         
+    ];
+});
