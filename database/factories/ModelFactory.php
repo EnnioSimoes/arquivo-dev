@@ -71,3 +71,19 @@ $factory->define(App\Model\Site::class, function (Faker\Generator $faker) {
         'ativo' => rand(0, 1),         
     ];
 });
+
+$factory->define(App\Model\Menu::class, function (Faker\Generator $faker) {
+    return [       
+        'titulo' => $faker->word,
+        'ativo' => rand(0, 1),         
+    ];
+});
+
+$factory->define(App\Model\ItensMenu::class, function (Faker\Generator $faker) {
+    return [       
+        'menu_id' => rand(1, 5),
+        'titulo' => $faker->word,
+        'link' => $faker->url,
+        'ativo' => rand(0, 1),         
+    ];
+});
