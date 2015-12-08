@@ -16,11 +16,14 @@ class DatabaseSeeder extends Seeder
 
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
+        $this->call(GrupoTableSeeder::class);
         $this->call(UserTableSeeder::class);
         $this->call(CategoriaTableSeeder::class);
         $this->call(PostTableSeeder::class);
         $this->call(SiteTableSeeder::class);
         $this->call(MenuTableSeeder::class);
+        $this->call(ItensMenuTableSeeder::class);
+        $this->call(PaginaTableSeeder::class);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 

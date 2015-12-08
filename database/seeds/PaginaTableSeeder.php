@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Model\Menu;
+use App\Model\Pagina;
 
-class MenuTableSeeder extends Seeder
+class PaginaTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,8 +12,8 @@ class MenuTableSeeder extends Seeder
      */
     public function run()
     {
-        Menu::truncate();
+        Pagina::truncate();
 
-        factory(Menu::class, 5)->create();
+        factory(Pagina::class, 5)->create();
     }
 }

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMenusTable extends Migration
+class CreateGruposTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,9 @@ class CreateMenusTable extends Migration
      */
     public function up()
     {
-        Schema::create('menus', function(Blueprint $table){
-
-            $table->engine = 'InnoDB';
-
+        Schema::create('grupos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('titulo', 60);
-            $table->boolean('ativo')->default(1);
+            $table->string('nome', 60);
         });
     }
 
@@ -29,6 +25,6 @@ class CreateMenusTable extends Migration
      */
     public function down()
     {
-        Schema::drop('menus');
+        Schema::drop('grupos');
     }
 }

@@ -28,7 +28,14 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = [
+        'nome',
+        'sobrenome',
+        'email',
+        'senha',
+        'grupo',
+        'ativo',
+    ];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -50,5 +57,10 @@ class User extends Model implements AuthenticatableContract,
     public function categoria() 
     {
         return $this->hasMany(Categoria::class);
+    }
+    
+    public function grupo() 
+    {
+        return $this->belongsTo(Grupo::class);
     }
 }

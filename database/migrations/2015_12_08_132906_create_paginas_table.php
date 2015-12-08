@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSitesTable extends Migration
+class CreatePaginasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,19 +12,15 @@ class CreateSitesTable extends Migration
      */
     public function up()
     {
-        Schema::create('sites', function (Blueprint $table) {
-            
+        
+        Schema::create('paginas', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            
+    
             $table->increments('id');
-            $table->string('nome', 60);
-            $table->string('link', 120);
-            $table->string('logotipo', 60);
-            $table->string('facebook', 160);
-            $table->string('youtube', 160);
-            $table->string('github', 160);
-            $table->string('googleplus', 160);
-            $table->string('twitter', 160);
+            $table->string('titulo', 60);
+            $table->string('slug', 60);
+            $table->text('conteudo');
+            $table->string('descricao', 120);
             $table->dateTime('dt_cadastro');
             $table->dateTime('dt_alteracao');
             $table->dateTime('dt_exclusao');
@@ -35,8 +31,7 @@ class CreateSitesTable extends Migration
             
             $table->foreign('cadastro_usuario_id')->references('id')->on('users')->on_update('cascade')->on_delete('cascade');
             $table->foreign('alteracao_usuario_id')->references('id')->on('users')->on_update('cascade')->on_delete('cascade');
-            $table->foreign('exclusao_usuario_id')->references('id')->on('users')->on_update('cascade')->on_delete('cascade');            
-        
+            $table->foreign('exclusao_usuario_id')->references('id')->on('users')->on_update('cascade')->on_delete('cascade');
         });
     }
 
@@ -47,6 +42,6 @@ class CreateSitesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('sites');
+        Schema::drop('paginas');
     }
 }

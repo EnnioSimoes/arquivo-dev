@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Model\Menu;
+use App\Model\Grupo;
 
-class MenuTableSeeder extends Seeder
+class GrupoTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,8 +12,8 @@ class MenuTableSeeder extends Seeder
      */
     public function run()
     {
-        Menu::truncate();
-
-        factory(Menu::class, 5)->create();
+        Grupo::truncate();
+    	
+        factory(Grupo::class, 5)->create();
     }
 }

@@ -12,7 +12,7 @@ class CreateItensMenusTable extends Migration
      */
     public function up()
     {
-        Schema::create('itens_menu', function (Blueprint $table) {
+        Schema::create('itens_menus', function (Blueprint $table) {
             
             $table->engine = 'InnoDB';
             
@@ -34,6 +34,6 @@ class CreateItensMenusTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('itens_menus');
     }
 }
