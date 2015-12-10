@@ -1,0 +1,40 @@
+@charset "UTF-8";
+.post{
+	@include column(12);
+	margin-top:em(15);
+	padding: 0 em(20) em(10) em(20);
+	border-top:em(2) solid $cor-primaria;
+	background:$cor-secundaria;
+
+	@media screen and (min-width:$screen-sm){
+		@include column(6);
+		margin-top:em(15);
+	}
+	@media screen and (min-width:$screen-md){
+		@include column(3);
+		margin-top:em(15);
+		position: absolute;
+	}
+
+	.post-chamada,
+	.post-resumo{ margin: em(20) 0; }
+
+	.post-link{ 
+		margin-top:em(10);
+		display: block;
+	}
+	
+	.post-acoes-usuario{
+		margin-top: em(20);
+		[class^="icone"]{
+			@include column(4);
+			text-align: center;
+			color: $cor-primaria;
+			cursor: pointer;
+
+			&:hover{
+				color:red;
+			}
+		}
+	}
+}

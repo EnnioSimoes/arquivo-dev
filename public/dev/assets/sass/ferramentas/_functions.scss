@@ -1,0 +1,16 @@
+@charset "UTF-8";
+/*  ==========================================================================
+    CONVERTER 'PX' EM 'EM'
+    ========================================================================== */
+$contexto-navegador: 16; // Default
+
+@function em($pixels, $context: $contexto-navegador) {
+  @return #{$pixels/$context}em;
+};
+
+/*  ==========================================================================
+    CONVERTER 'PX' EM '%'
+    ========================================================================== */
+@function porcentagem($pixels, $contexto){
+	@return #{$pixels/$contexto*100}#{'%'};
+};

@@ -1,0 +1,99 @@
+@charset "UTF-8";
+.logo{
+	display:block;
+	width:em(158);
+	height:em(50);
+	margin:em($collapse) auto;
+	background:$cor-primaria;
+}
+.navegacao-topo{
+	background:$cor-primaria;
+	color:#fff;
+	.container-topo{
+		@include column(10);
+		@include push(1);
+		
+		[class^="icone-"]{
+			padding: em(15) 0;
+			cursor: pointer;
+		}
+		.icone-menu{
+			float:left;
+		}
+		.icone-buscar{
+			float:right;
+		}
+
+		@media screen and (min-width:$screen-lg){
+			@include column(12);
+		}
+	}
+}
+.menu{
+	width:em(200);
+	height:100%;
+	position: absolute;
+	background: $cor-primaria;
+	transform:translateX(em(-200));
+	transition: 0.5s;
+	.icone-fechar{
+		float: right;
+		color: $cor-secundaria;
+		padding:em(24) em(17);
+		cursor: pointer;
+			&:hover,
+			&:active,
+			&:focus{
+				color: darken($cor-secundaria, 10%);
+			}
+	}
+	ul{
+		list-style: none;
+		position:relative;
+		a{
+			display: block;
+			float: left;
+    	width: 100%;
+			margin-bottom: em(2);
+			padding:em(24) 0 em(24) porcentagem(29, 200);
+			background:#fff;
+			text-decoration: none;
+			color: #333;
+			border-left:em(1) solid $cor-secundaria;
+			&:hover,
+			&:active,
+			&:focus{
+				background:$cor-secundaria;
+				color: $cor-primaria;
+			}
+		}
+	}
+}
+
+/* quando a classe menu estiver desativado */
+.topo, main{
+	transform:translateX(0);
+	transition: 0.5s;
+}
+/* quando a classe ativar o menu */
+.menu-ativo{
+	main, .topo{
+		transform:translateX(em(200));
+		transition: 0.5s;
+	}
+	.menu{
+		transform:translateX(0);
+		transition: 0.5s;
+	}
+	body{
+		background:rgba(0,0,0,0.5);
+		transition: 0.5s;
+		overflow-x: hidden;
+	}
+}
+
+/*Classe utilitaria para esconder coisas*/
+.u-esconder{
+	display:none;
+	transform:0.1s;
+}

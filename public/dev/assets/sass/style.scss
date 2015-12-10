@@ -1,0 +1,27 @@
+/*  CONFIGURAÇÕES
+    ========================================================================== */
+	@import "configuracoes/_variaveis.scss";
+
+/*  FERRAMENTAS
+    ========================================================================== */
+	@import "ferramentas/_functions.scss";
+	@import "ferramentas/_grid.scss";
+
+/*  ESTILOS GENERICOS
+    ========================================================================== */
+    @import "estilos-genericos/_normalize.scss";
+
+/*  ESTILOS BASICOS
+    ========================================================================== */
+	@import "estilos-basicos/estilos-basicos.scss";
+
+/*  OBJETOS
+    ========================================================================== */
+    @import "objetos/_botoes.scss";
+    @import "objetos/_icones.scss";
+    @import "objetos/_titulo.scss";
+
+/*  COMPONENTES
+    ========================================================================== */
+    @import "componentes/_topo.scss";
+    @import "componentes/_box-conteudo.scss";

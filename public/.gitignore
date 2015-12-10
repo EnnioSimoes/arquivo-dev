@@ -1,0 +1,3 @@
+dev/grunt/node_modules/*
+*.zip
+/nbproject/private/
