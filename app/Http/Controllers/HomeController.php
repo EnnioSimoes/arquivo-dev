@@ -7,10 +7,10 @@ use App\Model\Post;
 
 class HomeController extends Controller {
 
-	public $post;
+	public $post_db;
 
 	public function __construct(Post $posts) {
-		$this->post = new Post;
+		$this->post_db = new Post;
 	}
 
 	/**
@@ -20,9 +20,10 @@ class HomeController extends Controller {
 	 */
 	public function index() {
 
+		$posts = $this->post_db->get();
 		//Lembra disso Alex?? kkk
-		//dd($this->post->find(12));
+		//dd($posts);
 
-		return view('home');
+		return view('home', compact('posts'));
 	}
 }
