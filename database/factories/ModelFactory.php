@@ -19,10 +19,10 @@ $factory->define(App\Model\Grupo::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Model\User::class, function (Faker\Generator $faker) {
 	return [
-		'nome' => $faker->firstName,
+		'name' => $faker->firstName,
 		'sobrenome' => $faker->lastName,
 		'email' => $faker->email,
-		'senha' => bcrypt(str_random(10)),
+		'password' => bcrypt(str_random(10)),
 		'remember_token' => str_random(10),
 		'grupo_id' => rand(1, 5),
 		'ativo' => rand(0, 1),

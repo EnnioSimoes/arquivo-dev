@@ -11,6 +11,19 @@
 |
  */
 
+// Authentication routes...
+Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+// Registration routes...
+Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::post('auth/register', 'Auth\AuthController@postRegister');
+
 Route::get('/', 'HomeController@index');
 
-Route::get('/admin', 'Admin\AdminController@index');
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+	Route::get('dashboard', ['as' => 'dashboard.index', 'uses' => 'Admin\AdminController@index']);
+});
+
+// Continuar em http://laravel.com/docs/5.1/authentication
