@@ -22,7 +22,7 @@ class AdminController extends Controller {
 		$data['tasks'] = [
 			[
 				'name' => 'Design New Dashboard',
-				'progress' => '50',
+				'progress' => '90',
 				'color' => 'danger',
 			],
 			[

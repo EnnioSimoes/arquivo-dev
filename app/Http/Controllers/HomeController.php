@@ -22,7 +22,7 @@ class HomeController extends Controller {
 
 		$posts = $this->post_db->get();
 		//Lembra disso Alex?? kkk
-		//dd($posts);
+		//dd($posts->find(5)->titulo);
 
 		return view('home', compact('posts'));
 	}
