@@ -15,6 +15,17 @@ class UserTableSeeder extends Seeder
 
     	User::truncate();
     	
+
+        factory(User::class)->create([
+            'name' => 'Admin',
+            'sobrenome' => 'Administrador',
+            'email' => 'admin@admin.com.br',
+            'password' => bcrypt(123456),
+            'remember_token' => str_random(10),
+            'grupo_id' => rand(1, 5),
+            'ativo' => 1,
+        ]);     
+        
         factory(User::class, 15)->create();
     }
 }
