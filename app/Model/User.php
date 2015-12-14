@@ -32,7 +32,10 @@ CanResetPasswordContract {
 		'sobrenome',
 		'email',
 		'password',
-		'grupo',
+		'grupo_id',
+		'remember_token',
+		'created_at',
+		'updated_at',
 		'ativo',
 	];
 

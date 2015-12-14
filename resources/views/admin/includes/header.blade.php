@@ -109,7 +109,7 @@
               <!-- The user image in the navbar-->
               <img src="{{ asset('/bower_components/admin-lte/dist/img/user2-160x160.jpg') }} " class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">Alexander Pierce</span>
+              <span class="hidden-xs">{{ isset($user) ? $user->name : 'NULL' }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
@@ -117,8 +117,8 @@
                 <img src="{{ asset('/bower_components/admin-lte/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
 
                 <p>
-                  Alexander Pierce - Web Developer
-                  <small>Member since Nov. 2012</small>
+                  {{ isset($user) ? $user->name : 'NULL' }} - {{ isset($user) ? $user->sobrenome : NULL}}
+                  <small>Member since {{ isset($user) ? $user->created_at : 'NULL'}}</small>
                 </p>
               </li>
               <!-- Menu Body -->
