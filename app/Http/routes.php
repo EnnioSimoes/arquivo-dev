@@ -23,10 +23,13 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 Route::get('/', 'HomeController@index');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'as' => 'admin.'], function () {
-	Route::get('/', ['as' => 'dashboard.index', 'uses' => 'Admin\AdminController@index']);
-	Route::get('dashboard', ['as' => 'dashboard.index', 'uses' => 'Admin\AdminController@index']);
-        
-	Route::get('posts', ['as' => 'posts.index', 'uses' => 'Admin\PostsController@index']);
+    Route::get('/', ['as' => 'dashboard.index', 'uses' => 'Admin\AdminController@index']);
+    Route::get('dashboard', ['as' => 'dashboard.index', 'uses' => 'Admin\AdminController@index']);
+
+    Route::get('posts', ['as' => 'posts.index', 'uses' => 'Admin\PostsController@index']);
+    Route::get('posts/search/', ['as' => 'posts.search', 'uses' => 'Admin\PostsController@search']);
+
+    Route::get('perfil', ['as' => 'perfil.index', 'uses' => 'Admin\PerfilController@index']);
 });
 
 // Continuar em http://laravel.com/docs/5.1/authentication

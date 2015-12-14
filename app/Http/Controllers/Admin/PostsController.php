@@ -2,19 +2,23 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Post;
+use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
     public $data = [];
+    public $posts;
 
-    public function __construct(Request $request) 
+    public function __construct(Request $request, Post $posts)
     {
-        if($request->user()) {
+        if ($request->user()) {
             $this->data['user'] = $request->user();
         }
+        $this->posts = $posts;
+        $this->data['titulo'] = 'Posts';
+        $this->data['descricao'] = 'Lista com posts cadastrados.';
     }
 
     /**
@@ -24,14 +28,9 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $this->data['titulo'] = 'Posts';
-        $this->data['descricao'] = 'Lista com posts cadastrados.';
-        
-        $post = new Post;
-        $this->data['posts'] = $post->get();
-//            dd($this->data['posts']);
-        
-        return view('admin.posts')->with($this->data);
+        //$post = new Post;
+        $this->data['posts'] = $this->posts->paginate(9);
+        return view('admin.posts.index')->with($this->data);
     }
 
     /**
@@ -98,5 +97,12 @@ class PostsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        $this->data['posts'] = $this->posts->where('titulo', 'like', '%' . $request->table_search . '%')->paginate(9);
+        $this->data['search'] = $request->table_search;
+        return view('admin.posts.index')->with($this->data);
     }
 }
