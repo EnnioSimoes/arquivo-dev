@@ -4,7 +4,7 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <a class="btn btn-primary">Novo</a>
+          <a href="{{ route('admin.posts.create') }}" class="btn btn-primary">Novo</a>
           <div class="box-tools">
             <form method="GET" action="{{ route('admin.posts.search') }}" >
               <div class="input-group input-group-sm" style="width: 150px;">
