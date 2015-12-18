@@ -29,6 +29,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'as' => 'admin.'], fu
     Route::get('posts', ['as' => 'posts.index', 'uses' => 'Admin\PostsController@index']);
     Route::get('posts/create', ['as' => 'posts.create', 'uses' => 'Admin\PostsController@create']);
     Route::post('posts/store', ['as' => 'posts.store', 'uses' => 'Admin\PostsController@store']);
+    Route::get('posts/delete/{id}', ['as' => 'posts.delete', 'uses' => 'Admin\PostsController@delete']);
+
     Route::get('posts/search/', ['as' => 'posts.search', 'uses' => 'Admin\PostsController@search']);
 
     Route::get('perfil', ['as' => 'perfil.index', 'uses' => 'Admin\PerfilController@index']);

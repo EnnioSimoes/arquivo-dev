@@ -47,7 +47,7 @@
                   </button>
                   <ul class="dropdown-menu" role="menu">
                     <li><a href="#">Editar</a></li>
-                    <li><a href="#" data-toggle="modal" data-target="#myModal">Excluir</a></li>
+                    <li><a href="#" id="excluir" data-toggle="modal" data-id="{{ $post->id }}" data-target="#myModal">Excluir</a></li>
                   </ul>
                 </div>
               </td>
@@ -79,7 +79,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-outline">Sim</button>
+        <a href="{{ route('admin.posts.delete') }}"><button type="button" class="btn btn-outline">Sim</button></a>
       </div>
     </div>
     <!-- /.modal-content -->
@@ -87,3 +87,10 @@
   <!-- /.modal-dialog -->
 </div>
 @endsection
+<script type="text/javascript">
+  $('body').on('click', '#excluir', function(event) {
+    event.preventDefault();
+    var btn_id = $(this).data('id');
+    alert(btn_id);
+  });
+</script>

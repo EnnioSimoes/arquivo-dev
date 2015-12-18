@@ -29,7 +29,7 @@ class PostsController extends Controller
     public function index()
     {
         //$post = new Post;
-        $this->data['posts'] = $this->posts->paginate(9);
+        $this->data['posts'] = $this->posts->orderBy('id', 'desc')->paginate(9);
         return view('admin.posts.index')->with($this->data);
     }
 
@@ -53,7 +53,12 @@ class PostsController extends Controller
     {
         $data = $request->all();
         // dd($data["post"]);
-        $r = $this->post->create($data["post"]);
+        if ($this->posts->create($data["post"])) {
+            return redirect('admin/posts/')->with('status', 'Post inserido com sucesso!');
+        } else {
+            return redirect('admin/posts/')->with('status', 'Ocorreu um erro ao inserir o Post');
+        }
+
     }
 
     /**
@@ -98,7 +103,7 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->posts->where('id', '=', $id)->delete();
     }
 
     public function search(Request $request)
