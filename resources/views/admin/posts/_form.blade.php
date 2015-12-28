@@ -24,9 +24,9 @@
 </div>
 <div class="form-group">
     {!! Form::label('Site', 'Site:') !!}
-    {!! Form::text('post[site]', null, ['class'=>'form-control']) !!}
+    {!! Form::select('post[site]', $sites, null, ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
     {!! Form::label('Status', 'Status:') !!}
-    {!! Form::text('post[ativo]', null, ['class'=>'form-control']) !!}
+    {!! Form::select('post[ativo]', [1 => 'ativo', 2 => 'inativo'], null, ['class'=>'form-control']) !!}
 </div>

@@ -1,7 +1,7 @@
 @extends('admin/template/admin_template')
 @section('content')
 <div class="row">
-    {{ $categorias[0]->nome }}
+
   <div class="col-xs-12">
     @include('errors._check')
     <br />

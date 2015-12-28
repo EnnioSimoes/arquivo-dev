@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Model\Categoria;
 use App\Model\Post;
+use App\Model\Site;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
@@ -13,13 +14,15 @@ class PostsController extends Controller
     public $posts;
     public $categorias;
 
-    public function __construct(Request $request, Post $posts, Categoria $categorias)
+    public function __construct(Request $request, Post $posts, Categoria $categorias, Site $site)
     {
         if ($request->user()) {
             $this->data['user'] = $request->user();
         }
         $this->posts = $posts;
         $this->categorias = $categorias;
+        $this->sites = $site;
+
         $this->data['titulo'] = 'Posts';
         $this->data['descricao'] = 'Lista com posts cadastrados.';
     }
@@ -43,9 +46,10 @@ class PostsController extends Controller
      */
     public function create()
     {
-        $categorias = $this->categorias->get(['nome', 'id']);
-        // dd($categorias);
-        return view('admin.posts.create', compact('categorias'));
+        $categorias = $this->categorias->lists('nome', 'id');
+        $sites = $this->sites->lists('nome', 'id');
+
+        return view('admin.posts.create', compact('categorias', 'sites'));
     }
 
     /**
