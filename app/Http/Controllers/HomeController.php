@@ -24,7 +24,7 @@ class HomeController extends Controller
     {
         $posts = $this->post_db->get();
         //Lembra disso Alex?? kkk
-        //dd($posts->find(5)->titulo);
+        // dd($posts);
 
         return view('home', compact('posts'));
     }

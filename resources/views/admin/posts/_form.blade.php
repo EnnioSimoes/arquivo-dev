@@ -20,7 +20,7 @@
 </div>
 <div class="form-group">
     {!! Form::label('Categoria', 'Categoria:') !!}
-    {!! Form::text('post[categoria_id]', null, ['class'=>'form-control']) !!}
+    {!! Form::select('post[categoria_id]', $categorias, null, ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
     {!! Form::label('Site', 'Site:') !!}

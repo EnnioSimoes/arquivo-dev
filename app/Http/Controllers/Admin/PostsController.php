@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Model\Categoria;
 use App\Model\Post;
 use Illuminate\Http\Request;
 
@@ -10,13 +11,15 @@ class PostsController extends Controller
 {
     public $data = [];
     public $posts;
+    public $categorias;
 
-    public function __construct(Request $request, Post $posts)
+    public function __construct(Request $request, Post $posts, Categoria $categorias)
     {
         if ($request->user()) {
             $this->data['user'] = $request->user();
         }
         $this->posts = $posts;
+        $this->categorias = $categorias;
         $this->data['titulo'] = 'Posts';
         $this->data['descricao'] = 'Lista com posts cadastrados.';
     }
@@ -40,7 +43,9 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $categorias = $this->categorias->get(['nome', 'id']);
+        // dd($categorias);
+        return view('admin.posts.create', compact('categorias'));
     }
 
     /**
@@ -101,9 +106,13 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        $this->posts->where('id', '=', $id)->delete();
+        if ($this->posts->where('id', '=', $id)->delete()) {
+            return redirect('admin/posts/')->with('status', 'Post excluído com sucesso!');
+        } else {
+            return redirect('admin/posts/')->with('status', 'Ocorreu um erro ao excluir o Post');
+        }
     }
 
     public function search(Request $request)

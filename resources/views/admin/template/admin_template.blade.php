@@ -19,8 +19,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('/bower_components/admin-lte/dist/css/AdminLTE.min.css') }}">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
-        page. However, you can choose any other skin. Make sure you
-        apply the skin class to the body tag so the changes take effect.
+		page. However, you can choose any other skin. Make sure you
+		apply the skin class to the body tag so the changes take effect.
   -->
   <link rel="stylesheet" href="{{ asset('/bower_components/admin-lte/dist/css/skins/skin-blue.min.css') }}">
 
@@ -57,13 +57,13 @@ desired effect
   <!-- Main Header -->
   <header class="main-header">
 
-    <!-- Logo -->
-    <a href="index2.html" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
-    </a>
+	<!-- Logo -->
+	<a href="index2.html" class="logo">
+	  <!-- mini logo for sidebar mini 50x50 pixels -->
+	  <span class="logo-mini"><b>A</b>LT</span>
+	  <!-- logo for regular state and mobile devices -->
+	  <span class="logo-lg"><b>Admin</b>LTE</span>
+	</a>
 
   @include('admin.includes.header')
 
@@ -71,30 +71,30 @@ desired effect
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        {{ isset($titulo) ? $titulo : 'Sem Titulo' }}
-        <small>{{ isset($descricao) ? $descricao : '' }}</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-        <li class="active">Here</li>
-      </ol>
-    </section>
+	<!-- Content Header (Page header) -->
+	<section class="content-header">
+	  <h1>
+		{{ isset($titulo) ? $titulo : 'Sem Titulo' }}
+		<small>{{ isset($descricao) ? $descricao : '' }}</small>
+	  </h1>
+	  <ol class="breadcrumb">
+		<li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+		<li class="active">Here</li>
+	  </ol>
+	</section>
 
-    <!-- Main content -->
-    <section class="content">
-      @if (session('status'))
-          <div class="alert alert-success">
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              {{ session('status') }}
-          </div>
-      @endif
-     @yield('content')
+	<!-- Main content -->
+	<section class="content">
+	  @if (session('status'))
+		  <div class="alert alert-success">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  {{ session('status') }}
+		  </div>
+	  @endif
+	 @yield('content')
 
-    </section>
-    <!-- /.content -->
+	</section>
+	<!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
 
@@ -102,77 +102,77 @@ desired effect
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-      <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <!-- Home tab content -->
-      <div class="tab-pane active" id="control-sidebar-home-tab">
-        <h3 class="control-sidebar-heading">Recent Activity</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript::;">
-              <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+	<!-- Create the tabs -->
+	<ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+	  <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+	  <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+	</ul>
+	<!-- Tab panes -->
+	<div class="tab-content">
+	  <!-- Home tab content -->
+	  <div class="tab-pane active" id="control-sidebar-home-tab">
+		<h3 class="control-sidebar-heading">Recent Activity</h3>
+		<ul class="control-sidebar-menu">
+		  <li>
+			<a href="javascript::;">
+			  <i class="menu-icon fa fa-birthday-cake bg-red"></i>
 
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+			  <div class="menu-info">
+				<h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
 
-                <p>Will be 23 on April 24th</p>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
+				<p>Will be 23 on April 24th</p>
+			  </div>
+			</a>
+		  </li>
+		</ul>
+		<!-- /.control-sidebar-menu -->
 
-        <h3 class="control-sidebar-heading">Tasks Progress</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript::;">
-              <h4 class="control-sidebar-subheading">
-                Custom Template Design
-                <span class="label label-danger pull-right">70%</span>
-              </h4>
+		<h3 class="control-sidebar-heading">Tasks Progress</h3>
+		<ul class="control-sidebar-menu">
+		  <li>
+			<a href="javascript::;">
+			  <h4 class="control-sidebar-subheading">
+				Custom Template Design
+				<span class="label label-danger pull-right">70%</span>
+			  </h4>
 
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
+			  <div class="progress progress-xxs">
+				<div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+			  </div>
+			</a>
+		  </li>
+		</ul>
+		<!-- /.control-sidebar-menu -->
 
-      </div>
-      <!-- /.tab-pane -->
-      <!-- Stats tab content -->
-      <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-      <!-- /.tab-pane -->
-      <!-- Settings tab content -->
-      <div class="tab-pane" id="control-sidebar-settings-tab">
-        <form method="post">
-          <h3 class="control-sidebar-heading">General Settings</h3>
+	  </div>
+	  <!-- /.tab-pane -->
+	  <!-- Stats tab content -->
+	  <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+	  <!-- /.tab-pane -->
+	  <!-- Settings tab content -->
+	  <div class="tab-pane" id="control-sidebar-settings-tab">
+		<form method="post">
+		  <h3 class="control-sidebar-heading">General Settings</h3>
 
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Report panel usage
-              <input type="checkbox" class="pull-right" checked>
-            </label>
+		  <div class="form-group">
+			<label class="control-sidebar-subheading">
+			  Report panel usage
+			  <input type="checkbox" class="pull-right" checked>
+			</label>
 
-            <p>
-              Some information about this general settings option
-            </p>
-          </div>
-          <!-- /.form-group -->
-        </form>
-      </div>
-      <!-- /.tab-pane -->
-    </div>
+			<p>
+			  Some information about this general settings option
+			</p>
+		  </div>
+		  <!-- /.form-group -->
+		</form>
+	  </div>
+	  <!-- /.tab-pane -->
+	</div>
   </aside>
   <!-- /.control-sidebar -->
   <!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
+	   immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
@@ -187,8 +187,23 @@ desired effect
 <script src="{{ asset('/bower_components/admin-lte/dist/js/app.min.js') }}"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. Slimscroll is required when using the
-     fixed layout. -->
+	 Both of these plugins are recommended to enhance the
+	 user experience. Slimscroll is required when using the
+	 fixed layout. -->
+
+{{-- Script Posts --}}
+<script type="text/javascript">
+	$('body').on('click', '#excluir', function(event) {
+		event.preventDefault();
+		var btn_id = $(this).data('id');
+		var link = $('#act-link-delete').attr('href');
+		link = link + btn_id;
+		$('#act-link-delete').attr('href', link);
+		// console.log('ok');
+	});
+	$('#myModal').on('hidden.bs.modal', function (e) {
+		$(this).find('#act-link-delete').attr('href', 'posts/delete/');
+	})
+</script>
 </body>
 </html>
