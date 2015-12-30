@@ -7,6 +7,7 @@ use App\Model\Categoria;
 use App\Model\Post;
 use App\Model\Site;
 use Illuminate\Http\Request;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class PostsController extends Controller
 {
@@ -60,14 +61,39 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->hasFile('imagem'));
+
         $data = $request->all();
-        // dd($data["post"]);
+        if ($request->hasFile('imagem')) {
+            $novoNome = date('d-m-Y-h-i-s') . '-' . $request->file('imagem')->getClientOriginalName();
+
+            // dd($data['post']['x2']);
+            if ($data['post']['x1'] !== '' && $data['post']['x2'] !== '' && $data['post']['y1'] !== '' && $data['post']['y2'] !== '') {
+                // echo 'nulo';
+                $w = $data['post']['x2'] - $data['post']['x1'];
+                $h = $data['post']['y2'] - $data['post']['y1'];
+                $x = $data['post']['x1'];
+                $y = $data['post']['y1'];
+
+                Image::configure(array('driver' => 'gd'));
+                $image = Image::make($request->file('imagem'));
+                // width, height, $x, $y
+                $image->crop($w, $h, $x, $y);
+                $image->save('assets/images/posts/' . $novoNome);
+
+            } else {
+                $image = Image::make($request->file('imagem'));
+                $image->save('assets/images/posts/' . $novoNome);
+            }
+            $data["post"]["imagem"] = $novoNome;
+            // dd($data["post"]);
+        }
+
         if ($this->posts->create($data["post"])) {
             return redirect('admin/posts/')->with('status', 'Post inserido com sucesso!');
         } else {
             return redirect('admin/posts/')->with('status', 'Ocorreu um erro ao inserir o Post');
         }
-
     }
 
     /**

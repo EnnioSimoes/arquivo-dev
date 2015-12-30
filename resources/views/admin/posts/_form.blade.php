@@ -8,7 +8,7 @@
 </div>
 <div class="form-group">
     {!! Form::label('Imagem', 'Imagem:') !!}
-    {!! Form::file('post[imagem]', ['id' => 'imageLoader']) !!}
+    {!! Form::file('imagem', ['id' => 'imageLoader']) !!}
     <p class="help-block">Selecione a area para cortar</p>
     <div style="width: 50%;">
         <canvas id="imageCanvas"></canvas>
