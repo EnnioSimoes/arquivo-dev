@@ -1,54 +1,65 @@
 <div class="form-group">
     {!! Form::label('Título', 'Título:') !!}
-    {!! Form::text('post[titulo]', null, ['class'=>'form-control']) !!}
+    {!! Form::text('titulo', null, ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
     {!! Form::label('Link', 'Link:') !!}
-    {!! Form::text('post[link]', null, ['class'=>'form-control']) !!}
+    {!! Form::text('link', null, ['class'=>'form-control']) !!}
 </div>
+
 <div class="form-group">
     {!! Form::label('Imagem', 'Imagem:') !!}
+    @if(isset($post->imagem) && $post->imagem != '')
+    <br>
+    <img src="{{ asset('assets/images/posts') }}/{{ $post->imagem }}" style="max-width: 500px; max-height: 500px;">
+    <br>
+    <br>
+    @endif
     {!! Form::file('imagem', ['id' => 'imageLoader']) !!}
     <p class="help-block">Selecione a area para cortar</p>
-    <div style="width: 50%;">
-        <canvas id="imageCanvas"></canvas>
+    <div style="max-width: 700px; max-height: 700px;">
+        <canvas id="imageCanvas" class="hidden"></canvas>
     </div>
 </div>
+
 <div class="form-group">
     {!! Form::label('Descrição', 'Descrição:') !!}
-    {!! Form::text('post[descricao]', null, ['class'=>'form-control']) !!}
+    {!! Form::text('descricao', null, ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
     {!! Form::label('Autor', 'Autor:') !!}
-    {!! Form::text('post[autor]', null, ['class'=>'form-control']) !!}
+    {!! Form::text('autor', null, ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
     {!! Form::label('Categoria', 'Categoria:') !!}
-    {!! Form::select('post[categoria_id]', $categorias, null, ['class'=>'form-control']) !!}
+    {!! Form::select('categoria_id', $categorias, null, ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
     {!! Form::label('Site', 'Site:') !!}
-    {!! Form::select('post[site]', $sites, null, ['class'=>'form-control']) !!}
+    {!! Form::select('site_id', $sites, null, ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
     {!! Form::label('Status', 'Status:') !!}
-    {!! Form::select('post[ativo]', [1 => 'ativo', 2 => 'inativo'], null, ['class'=>'form-control']) !!}
+    {!! Form::select('ativo', [1 => 'ativo', 2 => 'inativo'], null, ['class'=>'form-control']) !!}
 </div>
 
 {{-- HIDDENS --}}
-    {!! Form::hidden('post[x1]') !!}
-    {!! Form::hidden('post[y1]') !!}
-    {!! Form::hidden('post[x2]') !!}
-    {!! Form::hidden('post[y2]') !!}
+    {!! Form::hidden('x1') !!}
+    {!! Form::hidden('y1') !!}
+    {!! Form::hidden('x2') !!}
+    {!! Form::hidden('y2') !!}
 
 <script type="text/javascript">
     $(document).ready(function () {
         $('#imageCanvas').imgAreaSelect({
+            // var canvas = this;
+            // console.log($('#imageCanvas'));
+            // canvas.removeClass('hidden');
             onSelectEnd: function (img, selection) {
-                $('input[name="post[x1]"]').val(selection.x1);
-                $('input[name="post[y1]"]').val(selection.y1);
-                $('input[name="post[x2]"]').val(selection.x2);
-                $('input[name="post[y2]"]').val(selection.y2);
+                $('input[name="x1"]').val(selection.x1);
+                $('input[name="y1"]').val(selection.y1);
+                $('input[name="x2"]').val(selection.x2);
+                $('input[name="y2"]').val(selection.y2);
             }
         });
     });
@@ -62,6 +73,8 @@
     function handleImage(e){
         var reader = new FileReader();
         reader.onload = function(event){
+            console.log(canvas);
+            $('#imageCanvas').removeClass('hidden');
             var img = new Image();
             img.onload = function(){
                 canvas.width = img.width;

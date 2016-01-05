@@ -4,28 +4,25 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Model\Categoria;
-use App\Model\Post;
-use App\Model\Site;
+// use App\Model\Post;
+// use App\Model\Site;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
 
-class PostsController extends Controller
+class CategoriasController extends Controller
 {
     public $data = [];
-    public $posts;
     public $categorias;
 
-    public function __construct(Request $request, Post $posts, Categoria $categorias, Site $site)
+    public function __construct(Request $request, Categoria $categorias)
     {
         if ($request->user()) {
             $this->data['user'] = $request->user();
         }
-        $this->posts = $posts;
         $this->categorias = $categorias;
-        $this->sites = $site;
 
-        $this->data['titulo'] = 'Posts';
-        $this->data['descricao'] = 'Lista com posts cadastrados.';
+        $this->data['titulo'] = 'Categorias';
+        $this->data['descricao'] = 'Lista com categorias cadastrados.';
     }
 
     /**
@@ -35,9 +32,8 @@ class PostsController extends Controller
      */
     public function index()
     {
-        //$post = new Post;
-        $this->data['posts'] = $this->posts->orderBy('id', 'desc')->paginate(9);
-        return view('admin.posts.index')->with($this->data);
+        $this->data['categorias'] = $this->categorias->orderBy('id', 'desc')->paginate(9);
+        return view('admin.categorias.index')->with($this->data);
     }
 
     /**
@@ -47,12 +43,10 @@ class PostsController extends Controller
      */
     public function create()
     {
-        $categorias = $this->categorias->lists('nome', 'id');
-        $sites = $this->sites->lists('nome', 'id');
         $titulo = 'Post';
         $descricao = 'Criar Novo Post';
 
-        return view('admin.posts.create', compact('categorias', 'sites', 'titulo', 'descricao'));
+        return view('admin.categorias.create', compact('titulo', 'descricao'));
     }
 
     /**
@@ -63,12 +57,16 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        $data = self::hasImage($request);
 
-        if ($this->posts->create($data)) {
-            return redirect('admin/posts/')->with('status', 'Post inserido com sucesso!');
+        $data = self::hasImage($request);
+        if ($data['slug'] == '') {
+            $data['slug'] = str_slug($data['nome']);
+        }
+
+        if ($this->categorias->create($data)) {
+            return redirect('admin/categorias/')->with('status', 'Post inserido com sucesso!');
         } else {
-            return redirect('admin/posts/')->with('status', 'Ocorreu um erro ao inserir o Post');
+            return redirect('admin/categorias/')->with('status', 'Ocorreu um erro ao inserir o Post');
         }
     }
 
@@ -80,7 +78,7 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        $post = $this->posts->find($id);
+        $post = $this->categorias->find($id);
         return $post;
     }
 
@@ -92,13 +90,11 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        $post = $this->posts->find($id);
-        $titulo = 'Post';
-        $descricao = 'Editar Post';
+        $categoria = $this->categorias->find($id);
+        $titulo = 'Categoria';
+        $descricao = 'Editar Categoria';
 
-        $categorias = $this->categorias->lists('nome', 'id');
-        $sites = $this->sites->lists('nome', 'id');
-        return view('admin.posts.edit', compact('categorias', 'sites', 'post', 'titulo', 'descricao'));
+        return view('admin.categorias.edit', compact('categoria', 'titulo', 'descricao'));
     }
 
     /**
@@ -113,10 +109,10 @@ class PostsController extends Controller
 
         $data = self::hasImage($request);
 
-        if ($this->posts->where('id', $id)->update($data)) {
-            return redirect('admin/posts/')->with('status', 'Post alterado com sucesso!');
+        if ($this->categorias->where('id', $id)->update($data)) {
+            return redirect('admin/categorias/')->with('status', 'Post alterado com sucesso!');
         } else {
-            return redirect('admin/posts/')->with('status', 'Ocorreu um erro ao inserir o Post');
+            return redirect('admin/categorias/')->with('status', 'Ocorreu um erro ao inserir o Post');
         }
 
     }
@@ -129,18 +125,18 @@ class PostsController extends Controller
      */
     public function delete($id)
     {
-        if ($this->posts->where('id', '=', $id)->delete()) {
-            return redirect('admin/posts/')->with('status', 'Post excluído com sucesso!');
+        if ($this->categorias->where('id', '=', $id)->delete()) {
+            return redirect('admin/categorias/')->with('status', 'Post excluído com sucesso!');
         } else {
-            return redirect('admin/posts/')->with('status', 'Ocorreu um erro ao excluir o Post');
+            return redirect('admin/categorias/')->with('status', 'Ocorreu um erro ao excluir o Post');
         }
     }
 
     public function search(Request $request)
     {
-        $this->data['posts'] = $this->posts->where('titulo', 'like', '%' . $request->table_search . '%')->paginate(9);
+        $this->data['categorias'] = $this->categorias->where('nome', 'like', '%' . $request->table_search . '%')->paginate(9);
         $this->data['search'] = $request->table_search;
-        return view('admin.posts.index')->with($this->data);
+        return view('admin.categorias.index')->with($this->data);
     }
     /**
      *  Verifica se foi enviada imagem e se for o caso faz o crop e envia para a pasta
@@ -162,11 +158,11 @@ class PostsController extends Controller
                 $image = Image::make($request->file('imagem'));
                 // width, height, $x, $y
                 $image->crop($w, $h, $x, $y);
-                $image->save('assets/images/posts/' . $novoNome);
+                $image->save('assets/images/categorias/' . $novoNome);
 
             } else {
                 $image = Image::make($request->file('imagem'));
-                $image->save('assets/images/posts/' . $novoNome);
+                $image->save('assets/images/categorias/' . $novoNome);
             }
 
             $data["imagem"] = $novoNome;

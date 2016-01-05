@@ -47,7 +47,7 @@
         <div class="col-xs-8">
           <div class="checkbox icheck">
             <label>
-              <input type="checkbox" name="remember"> Remember Me
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="remember"> Remember Me
             </label>
           </div>
         </div>
@@ -81,7 +81,7 @@
 <!-- Bootstrap 3.3.5 -->
 <script src="{{ asset('/bower_components/admin-lte/bootstrap/js/bootstrap.min.js') }}"></script>
 <!-- iCheck -->
-<script src="{{ asset('/bower_components/admin-lte/plugins/iCheck/icheck.min.js') }}"></script>
+{{-- <script src="{{ asset('/bower_components/admin-lte/plugins/iCheck/icheck.min.js') }}"></script> --}}
 <script>
   $(function () {
     $('input').iCheck({
