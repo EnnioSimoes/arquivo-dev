@@ -8,6 +8,7 @@
         @include('admin.posts._form')
         <div class="form-group">
             {!! Form::submit('submit', ['class'=>'btn btn-primary']) !!}
+            <a href="{{route('admin.posts.index')}}" class = "btn btn-default">Voltar</a>
         </div>
     {!! Form::close() !!}
   </div>

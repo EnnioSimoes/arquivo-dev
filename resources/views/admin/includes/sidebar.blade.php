@@ -42,6 +42,9 @@
             <a href="{{ route('admin.categorias.index') }}"><i class="fa fa-link"></i> <span>Categorias</span></a>
         </li>
         <li>
+            <a href="{{ route('admin.sites.index') }}"><i class="fa fa-link"></i> <span>Sites</span></a>
+        </li>
+        <li>
             <a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a>
         </li>
         <li class="treeview">

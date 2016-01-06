@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Model\Categoria;
 use App\Model\Post;
 use App\Model\Site;
+use App\Services\PostService;
 use Illuminate\Http\Request;
-use Intervention\Image\ImageManagerStatic as Image;
 
 class PostsController extends Controller
 {
@@ -61,9 +61,10 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, PostService $service)
     {
-        $data = self::hasImage($request);
+        $destino = 'assets/images/posts/';
+        $data = $service->cropImage($request, $destino);
 
         if ($this->posts->create($data)) {
             return redirect('admin/posts/')->with('status', 'Post inserido com sucesso!');
@@ -108,10 +109,10 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, PostService $service)
     {
-
-        $data = self::hasImage($request);
+        $destino = 'assets/images/posts/';
+        $data = $service->cropImage($request, $destino);
 
         if ($this->posts->where('id', $id)->update($data)) {
             return redirect('admin/posts/')->with('status', 'Post alterado com sucesso!');
@@ -142,42 +143,5 @@ class PostsController extends Controller
         $this->data['search'] = $request->table_search;
         return view('admin.posts.index')->with($this->data);
     }
-    /**
-     *  Verifica se foi enviada imagem e se for o caso faz o crop e envia para a pasta
-     */
-    public static function hasImage($request)
-    {
-        $data = $request->all();
-        if ($request->hasFile('imagem')) {
-            $novoNome = date('d-m-Y-h-i-s') . '-' . $request->file('imagem')->getClientOriginalName();
 
-            if ($data['x1'] !== '' && $data['x2'] !== '' && $data['y1'] !== '' && $data['y2'] !== '') {
-
-                $w = $data['x2'] - $data['x1'];
-                $h = $data['y2'] - $data['y1'];
-                $x = $data['x1'];
-                $y = $data['y1'];
-
-                Image::configure(array('driver' => 'gd'));
-                $image = Image::make($request->file('imagem'));
-                // width, height, $x, $y
-                $image->crop($w, $h, $x, $y);
-                $image->save('assets/images/posts/' . $novoNome);
-
-            } else {
-                $image = Image::make($request->file('imagem'));
-                $image->save('assets/images/posts/' . $novoNome);
-            }
-
-            $data["imagem"] = $novoNome;
-
-        }
-        unset($data['_token']);
-        unset($data['x1']);
-        unset($data['y1']);
-        unset($data['x2']);
-        unset($data['y2']);
-
-        return $data;
-    }
 }

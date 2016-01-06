@@ -47,4 +47,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'as' => 'admin.'], fu
     Route::post('categorias/update/{id}', ['as' => 'categorias.update', 'uses' => 'Admin\CategoriasController@update']);
     Route::get('categorias/search/', ['as' => 'categorias.search', 'uses' => 'Admin\CategoriasController@search']);
 
+    /** ROTAS SITES **/
+    Route::get('sites', ['as' => 'sites.index', 'uses' => 'Admin\SitesController@index']);
+    Route::get('sites/create', ['as' => 'sites.create', 'uses' => 'Admin\SitesController@create']);
+    Route::get('sites/edit/{id}', ['as' => 'sites.edit', 'uses' => 'Admin\SitesController@edit']);
+    Route::get('sites/delete/{id}', ['as' => 'sites.delete', 'uses' => 'Admin\SitesController@delete']);
+    Route::post('sites/store', ['as' => 'sites.store', 'uses' => 'Admin\SitesController@store']);
+    Route::post('sites/update/{id}', ['as' => 'sites.update', 'uses' => 'Admin\SitesController@update']);
+    Route::get('sites/search/', ['as' => 'sites.search', 'uses' => 'Admin\SitesController@search']);
+
 });
