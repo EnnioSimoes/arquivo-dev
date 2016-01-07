@@ -26,7 +26,7 @@
 			  <th>Status</th>
 			  <th>Ação</th>
 			</tr>
-			@foreach($posts as $post)
+			@foreach($data as $post)
 			<tr>
 			  <td><a href="{{route('admin.posts.edit', ['id'=>$post->id]) }}" >{{ $post->titulo }}</a></td>
 			  <td>{{ $post->descricao }}</td>
@@ -55,9 +55,9 @@
 			@endforeach
 		  </table>
 		  @if(isset($search))
-			{!! $posts->appends(['table_search' => $search])->render() !!}
+			{!! $data->appends(['table_search' => $search])->render() !!}
 		  @else
-			{!! $posts->render() !!}
+			{!! $data->render() !!}
 		  @endif
 		</div>
 	  <!-- /.box-body -->

@@ -2,42 +2,31 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Model\Categoria;
 use App\Model\Post;
 use App\Model\Site;
 use App\Services\PostService;
 use Illuminate\Http\Request;
 
-class PostsController extends Controller
+class PostsController extends CrudController
 {
-    public $data = [];
+    // public $data = [];
     public $posts;
     public $categorias;
 
-    public function __construct(Request $request, Post $posts, Categoria $categorias, Site $site)
+    public function __construct(Request $request, PostService $service, Post $posts, Categoria $categorias, Site $site)
     {
-        if ($request->user()) {
-            $this->data['user'] = $request->user();
-        }
-        $this->posts = $posts;
-        $this->categorias = $categorias;
-        $this->sites = $site;
+        parent::__construct($request);
 
         $this->data['titulo'] = 'Posts';
         $this->data['descricao'] = 'Lista com posts cadastrados.';
-    }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //$post = new Post;
-        $this->data['posts'] = $this->posts->orderBy('id', 'desc')->paginate(9);
-        return view('admin.posts.index')->with($this->data);
+        $this->categorias = $categorias;
+        $this->sites = $site;
+
+        $this->model = $posts;
+        $this->service = $service;
+        $this->route = 'admin.posts';
     }
 
     /**
@@ -52,37 +41,25 @@ class PostsController extends Controller
         $titulo = 'Post';
         $descricao = 'Criar Novo Post';
 
-        return view('admin.posts.create', compact('categorias', 'sites', 'titulo', 'descricao'));
+        return view($this->route . '.create', compact('categorias', 'sites', 'titulo', 'descricao'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, PostService $service)
+    // /**
+    //  * Store a newly created resource in storage.
+    //  *
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @return \Illuminate\Http\Response
+    //  */
+    public function store(Request $request)
     {
         $destino = 'assets/images/posts/';
-        $data = $service->cropImage($request, $destino);
+        $data = $this->service->cropImage($request, $destino);
 
-        if ($this->posts->create($data)) {
-            return redirect('admin/posts/')->with('status', 'Post inserido com sucesso!');
+        if ($this->model->create($data)) {
+            return redirect()->route($this->route . '.index')->with('status', 'Post inserido com sucesso!');
         } else {
-            return redirect('admin/posts/')->with('status', 'Ocorreu um erro ao inserir o Post');
+            return redirect()->route($this->route . '.index')->with('status', 'Ocorreu um erro ao inserir o Post');
         }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $post = $this->posts->find($id);
-        return $post;
     }
 
     /**
@@ -93,13 +70,13 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        $post = $this->posts->find($id);
+        $post = $this->model->find($id);
         $titulo = 'Post';
         $descricao = 'Editar Post';
 
         $categorias = $this->categorias->lists('nome', 'id');
         $sites = $this->sites->lists('nome', 'id');
-        return view('admin.posts.edit', compact('categorias', 'sites', 'post', 'titulo', 'descricao'));
+        return view($this->route . '.edit', compact('categorias', 'sites', 'post', 'titulo', 'descricao'));
     }
 
     /**
@@ -109,39 +86,25 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, PostService $service)
+    public function update(Request $request, $id)
     {
         $destino = 'assets/images/posts/';
-        $data = $service->cropImage($request, $destino);
+        $data = $this->service->cropImage($request, $destino);
 
-        if ($this->posts->where('id', $id)->update($data)) {
-            return redirect('admin/posts/')->with('status', 'Post alterado com sucesso!');
+        if ($this->model->where('id', $id)->update($data)) {
+            return redirect()->route($this->route . '.index')->with('status', 'Post alterado com sucesso!');
         } else {
-            return redirect('admin/posts/')->with('status', 'Ocorreu um erro ao inserir o Post');
+            return redirect()->route($this->route . '.index')->with('status', 'Ocorreu um erro ao inserir o Post');
         }
 
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function delete($id)
-    {
-        if ($this->posts->where('id', '=', $id)->delete()) {
-            return redirect('admin/posts/')->with('status', 'Post excluído com sucesso!');
-        } else {
-            return redirect('admin/posts/')->with('status', 'Ocorreu um erro ao excluir o Post');
-        }
     }
 
     public function search(Request $request)
     {
-        $this->data['posts'] = $this->posts->where('titulo', 'like', '%' . $request->table_search . '%')->paginate(9);
+        $this->data['posts'] = $this->model->where('titulo', 'like', '%' . $request->table_search . '%')->paginate(9);
         $this->data['search'] = $request->table_search;
-        return view('admin.posts.index')->with($this->data);
+        return view($this->route . '.index')->with($this->data);
     }
 
 }
+
