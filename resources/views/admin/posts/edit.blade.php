@@ -4,7 +4,7 @@
   <div class="col-xs-12">
     @include('errors._check')
     <br />
-    {!! Form::model($post, ['route' => ['admin.posts.update', $post->id], 'files' => true]) !!}
+    {!! Form::model($data, ['route' => ['admin.posts.update', $data->id], 'files' => true]) !!}
         @include('admin.posts._form')
         <div class="form-group">
             {!! Form::submit('submit', ['class'=>'btn btn-primary']) !!}

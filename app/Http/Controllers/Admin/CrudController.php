@@ -7,13 +7,15 @@ use Illuminate\Http\Request;
 
 abstract class CrudController extends Controller
 {
-    protected $service;
-    protected $model;
-    protected $route;
+    protected $service = null;
+    protected $model = null;
+    protected $route = null;
+    protected $titulo;
     protected $data = [];
 
     public function __construct(Request $request)
     {
+        // Exibe dados do usuario autenticado
         if ($request->user()) {
             $this->data['user'] = $request->user();
         }
@@ -29,6 +31,51 @@ abstract class CrudController extends Controller
         // dd($this->data['user']);
         $this->data['data'] = $this->model->orderBy('id', 'desc')->paginate(9);
         return view($this->route . '.index')->with($this->data);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $titulo = 'Nova' . $this->data['titulo'];
+        return view($this->route . '.create', compact('categoria', 'titulo'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $titulo = 'Editar' . $this->data['titulo'];
+        $data = $this->model->find($id);
+
+        return view($this->route . '.edit', compact('data', 'titulo', 'descricao'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+
+        $data = $request->all();
+        unset($data['_token']);
+
+        if ($this->model->where('id', $id)->update($data)) {
+            return redirect()->route($this->route . '.index')->with('status', 'Post alterado com sucesso!');
+        } else {
+            return redirect()->route($this->route . '.index')->with('status', 'Ocorreu um erro ao inserir o Post');
+        }
     }
 
     /**
@@ -57,5 +104,11 @@ abstract class CrudController extends Controller
         $post = $this->model->find($id);
         return $post;
     }
-}
 
+    public function search(Request $request)
+    {
+        $this->data['data'] = $this->model->where('nome', 'like', '%' . $request->table_search . '%')->paginate(9);
+        $this->data['search'] = $request->table_search;
+        return view($this->route . '.index')->with($this->data);
+    }
+}

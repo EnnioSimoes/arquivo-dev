@@ -70,13 +70,13 @@ class PostsController extends CrudController
      */
     public function edit($id)
     {
-        $post = $this->model->find($id);
+        $data = $this->model->find($id);
         $titulo = 'Post';
         $descricao = 'Editar Post';
 
         $categorias = $this->categorias->lists('nome', 'id');
         $sites = $this->sites->lists('nome', 'id');
-        return view($this->route . '.edit', compact('categorias', 'sites', 'post', 'titulo', 'descricao'));
+        return view($this->route . '.edit', compact('data', 'categorias', 'sites', 'titulo', 'descricao'));
     }
 
     /**
@@ -107,4 +107,3 @@ class PostsController extends CrudController
     }
 
 }
-

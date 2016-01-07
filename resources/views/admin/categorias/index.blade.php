@@ -24,7 +24,7 @@
 			  <th>Slug</th>
 			  <th>Ação</th>
 			</tr>
-			@foreach($categorias as $categoria)
+			@foreach($data as $categoria)
 			<tr>
 			  <td><a href="{{route('admin.categorias.edit', ['id'=>$categoria->id]) }}" >{{ $categoria->nome }}</a></td>
 			  <td>{{ $categoria->slug }}</td>
@@ -45,9 +45,9 @@
 			@endforeach
 		  </table>
 		  @if(isset($search))
-			{!! $categorias->appends(['table_search' => $search])->render() !!}
+			{!! $data->appends(['table_search' => $search])->render() !!}
 		  @else
-			{!! $categorias->render() !!}
+			{!! $data->render() !!}
 		  @endif
 		</div>
 	  <!-- /.box-body -->

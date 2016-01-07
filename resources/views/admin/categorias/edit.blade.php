@@ -4,7 +4,7 @@
   <div class="col-xs-12">
     @include('errors._check')
     <br />
-    {!! Form::model($categoria, ['route' => ['admin.categorias.update', $categoria->id], 'files' => true]) !!}
+    {!! Form::model($data, ['route' => ['admin.categorias.update', $data->id], 'files' => true]) !!}
         @include('admin.categorias._form')
         <div class="form-group">
             {!! Form::submit('submit', ['class'=>'btn btn-primary']) !!}
