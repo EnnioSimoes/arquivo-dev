@@ -25,7 +25,7 @@
 			  <th>Status</th>
 			  <th>Ação</th>
 			</tr>
-			@foreach($sites as $site)
+			@foreach($data as $site)
 			<tr>
 			  <td><a href="{{route('admin.sites.edit', ['id'=>$site->id]) }}" >{{ $site->nome }}</a></td>
 			  <td>{{ $site->link }}</td>
@@ -53,9 +53,9 @@
 			@endforeach
 		  </table>
 		  @if(isset($search))
-			{!! $sites->appends(['table_search' => $search])->render() !!}
+			{!! $datadata->appends(['table_search' => $search])->render() !!}
 		  @else
-			{!! $sites->render() !!}
+			{!! $data->render() !!}
 		  @endif
 		</div>
 	  <!-- /.box-body -->
