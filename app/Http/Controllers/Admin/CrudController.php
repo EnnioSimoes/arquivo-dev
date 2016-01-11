@@ -105,13 +105,13 @@ abstract class CrudController extends Controller
         return $post;
     }
 
-    public function search(Request $request)
-    {
-        $tabela = with($this->model)->getTable();
-        dd($table);
-        if (Schema::hasColumn('sites', 'nome');)
-        $this->data['data'] = $this->model->where('nome', 'like', '%' . $request->table_search . '%')->paginate(9);
-        $this->data['search'] = $request->table_search;
-        return view($this->route . '.index')->with($this->data);
-    }
+//    public function search(Request $request)
+//    {
+//        $tabela = with($this->model)->getTable();
+//        dd($table);
+//        if (Schema::hasColumn('sites', 'nome');)
+//        $this->data['data'] = $this->model->where('nome', 'like', '%' . $request->table_search . '%')->paginate(9);
+//        $this->data['search'] = $request->table_search;
+//        return view($this->route . '.index')->with($this->data);
+//    }
 }
