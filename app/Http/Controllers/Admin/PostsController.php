@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 
 class PostsController extends CrudController
 {
-    // public $data = [];
     public $posts;
     public $categorias;
 
@@ -19,14 +18,12 @@ class PostsController extends CrudController
         parent::__construct($request);
 
         $this->data['titulo'] = 'Posts';
-        $this->data['descricao'] = 'Lista com posts cadastrados.';
-
         $this->categorias = $categorias;
         $this->sites = $site;
-
         $this->model = $posts;
         $this->service = $service;
         $this->route = 'admin.posts';
+        $this->buscar_em = 'titulo';
     }
 
     /**
@@ -44,12 +41,12 @@ class PostsController extends CrudController
         return view($this->route . '.create', compact('categorias', 'sites', 'titulo', 'descricao'));
     }
 
-    // /**
-    //  * Store a newly created resource in storage.
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @return \Illuminate\Http\Response
-    //  */
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         $destino = 'assets/images/posts/';
@@ -98,12 +95,4 @@ class PostsController extends CrudController
         }
 
     }
-
-    public function search(Request $request)
-    {
-        $this->data['posts'] = $this->model->where('titulo', 'like', '%' . $request->table_search . '%')->paginate(9);
-        $this->data['search'] = $request->table_search;
-        return view($this->route . '.index')->with($this->data);
-    }
-
 }

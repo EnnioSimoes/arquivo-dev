@@ -17,6 +17,7 @@ class CategoriasController extends CrudController
         $this->data['titulo'] = 'Categorias';
         $this->model = $categorias;
         $this->route = 'admin.categorias';
+        $this->buscar_em = 'nome';
     }
 
     /**

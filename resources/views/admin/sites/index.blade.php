@@ -53,7 +53,7 @@
 			@endforeach
 		  </table>
 		  @if(isset($search))
-			{!! $datadata->appends(['table_search' => $search])->render() !!}
+			{!! $data->appends(['table_search' => $search])->render() !!}
 		  @else
 			{!! $data->render() !!}
 		  @endif

@@ -9,9 +9,9 @@
 
 <div class="form-group">
     {!! Form::label('Logotipo', 'Logotipo:') !!}
-    @if(isset($site->logotipo) && $site->logotipo != '')
+    @if(isset($data->logotipo) && $data->logotipo != '')
     <br>
-    <img src="{{ asset('assets/images/sites') }}/{{ $site->logotipo }}" style="max-width: 500px; max-height: 500px;">
+    <img src="{{ asset('assets/images/sites') }}/{{ $data->logotipo }}" style="max-width: 500px; max-height: 500px;">
     <br>
     <br>
     @endif
