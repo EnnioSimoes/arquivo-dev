@@ -1,12 +1,33 @@
+'name',
+'sobrenome',
+'email',
+'password',
+'grupo_id',
+'remember_token',
+'created_at',
+'updated_at',
+'ativo',
 <div class="form-group">
-    {!! Form::label('Título', 'Título:') !!}
-    {!! Form::text('titulo', null, ['class'=>'form-control']) !!}
+    {!! Form::label('Nome', 'Nome:') !!}
+    {!! Form::text('name', null, ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('Link', 'Link:') !!}
-    {!! Form::text('link', null, ['class'=>'form-control']) !!}
+    {!! Form::label('Sobrenome', 'Sobrenome:') !!}
+    {!! Form::text('sobrenome', null, ['class'=>'form-control']) !!}
 </div>
-
+<div class="form-group">
+    {!! Form::label('E-mail', 'E-mail:') !!}
+    {!! Form::text('email', null, ['class'=>'form-control']) !!}
+</div>
+<div class="form-group">
+    {!! Form::label('Senha', 'Senha:') !!}
+    {!! Form::text('email', null, ['class'=>'form-control']) !!}
+</div>
+<div class="form-group">
+    {!! Form::label('Repetir a Senha', 'Repetir a Senha:') !!}
+    {!! Form::text('repetir-senha', null, ['class'=>'form-control']) !!}
+</div>
+{{-- 
 <div class="form-group">
     {!! Form::label('Imagem', 'Imagem:') !!}
     @if(isset($data->imagem) && $data->imagem != '')
@@ -23,21 +44,9 @@
 </div>
 
 <div class="form-group">
-    {!! Form::label('Descrição', 'Descrição:') !!}
-    {!! Form::text('descricao', null, ['class'=>'form-control']) !!}
-</div>
-<div class="form-group">
-    {!! Form::label('Autor', 'Autor:') !!}
-    {!! Form::text('autor', null, ['class'=>'form-control']) !!}
-</div>
-<div class="form-group">
     {!! Form::label('Categoria', 'Categoria:') !!}
     {!! Form::select('categoria_id', $categorias, null, ['class'=>'form-control']) !!}
-</div>
-<div class="form-group">
-    {!! Form::label('Site', 'Site:') !!}
-    {!! Form::select('site_id', $sites, null, ['class'=>'form-control']) !!}
-</div>
+</div> --}}
 <div class="form-group">
     {!! Form::label('Status', 'Status:') !!}
     {!! Form::select('ativo', [1 => 'ativo', 2 => 'inativo'], null, ['class'=>'form-control']) !!}

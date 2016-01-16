@@ -40,4 +40,27 @@ class SitesController extends CrudController
             return redirect('admin/sites/')->with('status', 'Ocorreu um erro ao inserir o Post');
         }
     }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $data = $request->all();
+        unset($data['_token']);
+        unset($data['x1']);
+        unset($data['x2']);
+        unset($data['y1']);
+        unset($data['y2']);
+
+        if ($this->model->where('id', $id)->update($data)) {
+            return redirect()->route($this->route . '.index')->with('status', 'Post alterado com sucesso!');
+        } else {
+            return redirect()->route($this->route . '.index')->with('status', 'Ocorreu um erro ao inserir o Post');
+        }
+    }
 }

@@ -56,4 +56,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'as' => 'admin.'], fu
     Route::post('sites/update/{id}', ['as' => 'sites.update', 'uses' => 'Admin\SitesController@update']);
     Route::get('sites/search/', ['as' => 'sites.search', 'uses' => 'Admin\SitesController@search']);
 
+    /** ROTAS USERS **/
+    Route::get('users', ['as' => 'users.index', 'uses' => 'Admin\UsersController@index']);
+    Route::get('users/create', ['as' => 'users.create', 'uses' => 'Admin\UsersController@create']);
+    Route::get('users/edit/{id}', ['as' => 'users.edit', 'uses' => 'Admin\UsersController@edit']);
+    Route::get('users/delete/{id}', ['as' => 'users.delete', 'uses' => 'Admin\UsersController@delete']);
+    Route::post('users/store', ['as' => 'users.store', 'uses' => 'Admin\UsersController@store']);
+    Route::post('users/update/{id}', ['as' => 'users.update', 'uses' => 'Admin\UsersController@update']);
+    Route::get('users/search/', ['as' => 'users.search', 'uses' => 'Admin\UsersController@search']);
+
 });
