@@ -1,12 +1,3 @@
-'name',
-'sobrenome',
-'email',
-'password',
-'grupo_id',
-'remember_token',
-'created_at',
-'updated_at',
-'ativo',
 <div class="form-group">
     {!! Form::label('Nome', 'Nome:') !!}
     {!! Form::text('name', null, ['class'=>'form-control']) !!}
@@ -21,32 +12,30 @@
 </div>
 <div class="form-group">
     {!! Form::label('Senha', 'Senha:') !!}
-    {!! Form::text('email', null, ['class'=>'form-control']) !!}
+    {!! Form::text('password', null, ['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
     {!! Form::label('Repetir a Senha', 'Repetir a Senha:') !!}
-    {!! Form::text('repetir-senha', null, ['class'=>'form-control']) !!}
+    {!! Form::text('repetir-password', null, ['class'=>'form-control']) !!}
 </div>
-{{-- 
 <div class="form-group">
     {!! Form::label('Imagem', 'Imagem:') !!}
-    @if(isset($data->imagem) && $data->imagem != '')
+    @if(isset($data->avatar) && $data->avatar != '')
     <br>
-    <img src="{{ asset('assets/images/posts') }}/{{ $data->imagem }}" style="max-width: 500px; max-height: 500px;">
+    <img src="{{ asset('assets/images/avatar') }}/{{ $data->avatar }}" style="max-width: 500px; max-height: 400px;">
     <br>
     <br>
     @endif
-    {!! Form::file('imagem', ['id' => 'imageLoader']) !!}
+    {!! Form::file('avatar', ['id' => 'imageLoader']) !!}
     <p class="help-block">Selecione a area para cortar</p>
     <div style="max-width: 700px; max-height: 700px;">
         <canvas id="imageCanvas" class="hidden"></canvas>
     </div>
 </div>
-
 <div class="form-group">
-    {!! Form::label('Categoria', 'Categoria:') !!}
-    {!! Form::select('categoria_id', $categorias, null, ['class'=>'form-control']) !!}
-</div> --}}
+    {!! Form::label('Grupo', 'Grupo:') !!}
+    {!! Form::select('grupo_id', $grupos, null, ['class'=>'form-control']) !!}
+</div>
 <div class="form-group">
     {!! Form::label('Status', 'Status:') !!}
     {!! Form::select('ativo', [1 => 'ativo', 2 => 'inativo'], null, ['class'=>'form-control']) !!}

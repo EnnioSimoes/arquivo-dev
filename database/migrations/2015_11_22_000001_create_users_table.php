@@ -16,6 +16,7 @@ class CreateUsersTable extends Migration {
 			$table->string('sobrenome');
 			$table->string('email')->unique();
 			$table->string('password', 60);
+			$table->string('avatar', 120);
 			$table->integer('grupo_id')->unsigned()->nullable();
 			$table->rememberToken();
 			$table->timestamps();

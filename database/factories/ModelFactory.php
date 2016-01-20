@@ -23,6 +23,7 @@ $factory->define(App\Model\User::class, function (Faker\Generator $faker) {
 		'sobrenome' => $faker->lastName,
 		'email' => $faker->email,
 		'password' => bcrypt(str_random(10)),
+		'avatar' => 'juspion.jpg',
 		'remember_token' => str_random(10),
 		'grupo_id' => rand(1, 5),
 		'ativo' => rand(0, 1),

@@ -65,4 +65,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'as' => 'admin.'], fu
     Route::post('users/update/{id}', ['as' => 'users.update', 'uses' => 'Admin\UsersController@update']);
     Route::get('users/search/', ['as' => 'users.search', 'uses' => 'Admin\UsersController@search']);
 
+    /** GRUPOS DE USERS **/
+    Route::get('grupos', ['as' => 'grupos.index', 'uses' => 'Admin\GruposController@index']);
+    Route::get('grupos/create', ['as' => 'grupos.create', 'uses' => 'Admin\GruposController@create']);
+    Route::get('grupos/edit/{id}', ['as' => 'grupos.edit', 'uses' => 'Admin\GruposController@edit']);
+    Route::get('grupos/delete/{id}', ['as' => 'grupos.delete', 'uses' => 'Admin\GruposController@delete']);
+    Route::post('grupos/store', ['as' => 'grupos.store', 'uses' => 'Admin\GruposController@store']);
+    Route::post('grupos/update/{id}', ['as' => 'grupos.update', 'uses' => 'Admin\GruposController@update']);
+    Route::get('grupos/search/', ['as' => 'grupos.search', 'uses' => 'Admin\GruposController@search']);
+
 });
