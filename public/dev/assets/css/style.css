@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/*  CONFIGURAÇÕES
+/*  CONFIGURA├ç├òES
     ========================================================================== */
 /*  ==========================================================================
 BREAKPOINTS (MOBILE FIRST)
@@ -460,7 +460,6 @@ a {
   position: absolute;
   background: #232323;
   -webkit-transform: translateX(-12.5em);
-      -ms-transform: translateX(-12.5em);
           transform: translateX(-12.5em);
   -webkit-transition: 0.5s;
           transition: 0.5s; }
@@ -491,7 +490,6 @@ a {
 /* quando a classe menu estiver desativado */
 .topo, main {
   -webkit-transform: translateX(0);
-      -ms-transform: translateX(0);
           transform: translateX(0);
   -webkit-transition: 0.5s;
           transition: 0.5s; }
@@ -499,13 +497,11 @@ a {
 /* quando a classe ativar o menu */
 .menu-ativo main, .menu-ativo .topo {
   -webkit-transform: translateX(12.5em);
-      -ms-transform: translateX(12.5em);
           transform: translateX(12.5em);
   -webkit-transition: 0.5s;
           transition: 0.5s; }
 .menu-ativo .menu {
   -webkit-transform: translateX(0);
-      -ms-transform: translateX(0);
           transform: translateX(0);
   -webkit-transition: 0.5s;
           transition: 0.5s; }
@@ -519,7 +515,6 @@ a {
 .u-esconder {
   display: none;
   -webkit-transform: 0.1s;
-      -ms-transform: 0.1s;
           transform: 0.1s; }
 
 .post {

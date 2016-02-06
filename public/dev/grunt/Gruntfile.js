@@ -29,7 +29,7 @@ module.exports = function(grunt) {
 	  			noCache: true
 				},
 				files:{
-					'<%= dir.dist.css %>/style.css': '<%= dir.dev.sass %>/style.scss'
+					'<%= dir.dist.css %>/style.min.css': '<%= dir.dev.sass %>/style.scss'
 				}
 			},
 
