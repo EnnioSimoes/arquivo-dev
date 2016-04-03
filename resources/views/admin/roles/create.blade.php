@@ -5,11 +5,11 @@
   <div class="col-xs-12">
     @include('errors._check')
     <br />
-    {!! Form::open(['route'=>'admin.grupos.store', 'files' => true]) !!}
-        @include('admin.grupos._form')
+    {!! Form::open(['route'=>'admin.roles.store', 'files' => true]) !!}
+        @include('admin.roles._form')
         <div class="form-group">
             {!! Form::submit('submit', ['class'=>'btn btn-primary']) !!}
-            <a href="{{route('admin.grupos.index')}}" class = "btn btn-default">Voltar</a>
+            <a href="{{route('admin.roles.index')}}" class = "btn btn-default">Voltar</a>
         </div>
     {!! Form::close() !!}
   </div>

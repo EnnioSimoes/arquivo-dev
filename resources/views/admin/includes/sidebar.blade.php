@@ -44,17 +44,12 @@
         <li>
             <a href="{{ route('admin.sites.index') }}"><i class="fa fa-link"></i> <span>Sites</span></a>
         </li>
-        <li>
-            <a href="{{ route('admin.users.index') }}"><i class="fa fa-link"></i> <span>Usuários</span></a>
-        </li>
-        <li>
-            <a href="{{ route('admin.grupos.index') }}"><i class="fa fa-link"></i> <span>Grupos de usuários</span></a>
-        </li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
+          <a href="#"><i class="fa fa-link"></i> <span>Controle de acesso</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
+            <li><a href="{{ route('admin.users.index') }}"><i class="fa fa-link"></i> <span>Usuários</span></a></li>
+            <li><a href="{{ route('admin.roles.index') }}"><i class="fa fa-link"></i><span>Papéis</span></a></li>
+            <li><a href="{{ route('admin.permissions.index') }}"><i class="fa fa-link"></i><span>Permissões</span></a></li>
           </ul>
         </li>
       </ul>

@@ -31,6 +31,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
   	<link rel="stylesheet" href="{{ asset('/assets/css/imgareaselect-default.css') }}">
+  	<link rel="stylesheet" href="{{ asset('/assets/css/admin-style.css') }}">
 
   	<!-- jQuery 2.1.4 -->
 	<script src="{{ asset('/bower_components/admin-lte/plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
@@ -68,7 +69,7 @@ desired effect
 	  <!-- mini logo for sidebar mini 50x50 pixels -->
 	  <span class="logo-mini"><b>A</b>LT</span>
 	  <!-- logo for regular state and mobile devices -->
-	  <span class="logo-lg"><b>Admin</b>LTE</span>
+	  <span class="logo-lg"><b>Arquivo</b>DEV</span>
 	</a>
 
   @include('admin.includes.header')

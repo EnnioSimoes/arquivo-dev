@@ -4,11 +4,11 @@
   <div class="col-xs-12">
     @include('errors._check')
     <br />
-    {!! Form::model($data, ['route' => ['admin.grupos.update', $data->id], 'files' => true]) !!}
-        @include('admin.grupos._form')
+    {!! Form::model($data, ['route' => ['admin.roles.update', $data->id], 'files' => true]) !!}
+        @include('admin.roles._form')
         <div class="form-group">
             {!! Form::submit('submit', ['class'=>'btn btn-primary']) !!}
-            <a href="{{route('admin.grupos.index')}}" class = "btn btn-default">Voltar</a>
+            <a href="{{route('admin.roles.index')}}" class = "btn btn-default">Voltar</a>
         </div>
     {!! Form::close() !!}
   </div>

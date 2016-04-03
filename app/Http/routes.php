@@ -65,13 +65,23 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'as' => 'admin.'], fu
     Route::post('users/update/{id}', ['as' => 'users.update', 'uses' => 'Admin\UsersController@update']);
     Route::get('users/search/', ['as' => 'users.search', 'uses' => 'Admin\UsersController@search']);
 
-    /** GRUPOS DE USERS **/
-    Route::get('grupos', ['as' => 'grupos.index', 'uses' => 'Admin\GruposController@index']);
-    Route::get('grupos/create', ['as' => 'grupos.create', 'uses' => 'Admin\GruposController@create']);
-    Route::get('grupos/edit/{id}', ['as' => 'grupos.edit', 'uses' => 'Admin\GruposController@edit']);
-    Route::get('grupos/delete/{id}', ['as' => 'grupos.delete', 'uses' => 'Admin\GruposController@delete']);
-    Route::post('grupos/store', ['as' => 'grupos.store', 'uses' => 'Admin\GruposController@store']);
-    Route::post('grupos/update/{id}', ['as' => 'grupos.update', 'uses' => 'Admin\GruposController@update']);
-    Route::get('grupos/search/', ['as' => 'grupos.search', 'uses' => 'Admin\GruposController@search']);
+    /** ROTAS Roles **/
+    Route::get('roles', ['as' => 'roles.index', 'uses' => 'Admin\RolesController@index']);
+    Route::get('roles/create', ['as' => 'roles.create', 'uses' => 'Admin\RolesController@create']);
+    Route::get('roles/edit/{id}', ['as' => 'roles.edit', 'uses' => 'Admin\RolesController@edit']);
+    Route::get('roles/delete/{id}', ['as' => 'roles.delete', 'uses' => 'Admin\RolesController@delete']);
+    Route::post('roles/store', ['as' => 'roles.store', 'uses' => 'Admin\RolesController@store']);
+    Route::post('roles/update/{id}', ['as' => 'roles.update', 'uses' => 'Admin\RolesController@update']);
+    Route::get('roles/search/', ['as' => 'roles.search', 'uses' => 'Admin\RolesController@search']);
+
+    /** ROTAS Permission **/
+    Route::get('permissions', ['as' => 'permissions.index', 'uses' => 'Admin\PermissionController@index']);
+    Route::get('permissions/create', ['as' => 'permissions.create', 'uses' => 'Admin\PermissionController@create']);
+    Route::get('permissions/edit/{id}', ['as' => 'permissions.edit', 'uses' => 'Admin\PermissionController@edit']);
+    Route::get('permissions/delete/{id}', ['as' => 'permissions.delete', 'uses' => 'Admin\PermissionController@delete']);
+    Route::post('permissions/store', ['as' => 'permissions.store', 'uses' => 'Admin\PermissionController@store']);
+    Route::post('permissions/update/{id}', ['as' => 'permissions.update', 'uses' => 'Admin\PermissionController@update']);
+    Route::get('permissions/search/', ['as' => 'permissions.search', 'uses' => 'Admin\PermissionController@search']);
+
 
 });

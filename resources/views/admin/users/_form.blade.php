@@ -33,10 +33,6 @@
     </div>
 </div>
 <div class="form-group">
-    {!! Form::label('Grupo', 'Grupo:') !!}
-    {!! Form::select('grupo_id', $grupos, null, ['class'=>'form-control']) !!}
-</div>
-<div class="form-group">
     {!! Form::label('Status', 'Status:') !!}
     {!! Form::select('ativo', [1 => 'ativo', 2 => 'inativo'], null, ['class'=>'form-control']) !!}
 </div>

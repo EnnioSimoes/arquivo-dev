@@ -3,20 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Model\User;
-use App\Model\Grupo;
 use Illuminate\Http\Request;
 use App\Services\UserService;
 
 class UsersController extends CrudController
 {
     public $data = [];
-    public $grupos;
 
-    public function __construct(Request $request, User $users, Grupo $grupos, UserService $service)
+    public function __construct(Request $request, User $users, UserService $service)
     {
         parent::__construct($request);
 
-        $this->grupos = $grupos;
         $this->data['titulo'] = 'Usuários';
         $this->model = $users;
         $this->route = 'admin.users';
@@ -31,9 +28,8 @@ class UsersController extends CrudController
      */
     public function create()
     {
-        $grupos = $this->grupos->lists('nome', 'id');
         $titulo = 'Novo' . $this->data['titulo'];
-        return view($this->route . '.create', compact('grupos', 'titulo'));
+        return view($this->route . '.create', compact('titulo'));
     }
 
     /**
@@ -46,11 +42,9 @@ class UsersController extends CrudController
     {
         $titulo = 'Editar' . $this->data['titulo'];
         $data = $this->model->where('id', $id)
-        ->select(['id', 'name', 'sobrenome', 'email', 'avatar', 'grupo_id', 'remember_token', 'created_at', 'updated_at', 'ativo'])
+        ->select(['id', 'name', 'sobrenome', 'email', 'avatar', 'remember_token', 'created_at', 'updated_at', 'ativo'])
         ->get()[0];
-        $grupos = $this->grupos->lists('nome', 'id');
-
-        return view($this->route . '.edit', compact('data', 'grupos', 'descricao'));
+        return view($this->route . '.edit', compact('data', 'descricao'));
     }
 
     /**

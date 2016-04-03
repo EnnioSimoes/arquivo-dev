@@ -29,7 +29,7 @@ abstract class CrudController extends Controller
      */
     public function index()
     {
-        // dd($this->data['user']);
+        // dd($this->data['user']->name);
         $this->data['data'] = $this->model->orderBy('id', 'desc')->paginate(9);
         return view($this->route . '.index')->with($this->data);
     }
@@ -41,8 +41,9 @@ abstract class CrudController extends Controller
      */
     public function create()
     {
-        $titulo = 'Nova' . $this->data['titulo'];
-        return view($this->route . '.create', compact('categoria', 'titulo'));
+        $titulo = 'Adicionar ' . $this->data['titulo'];
+        $user = $this->data['user'];
+        return view($this->route . '.create', compact('titulo', 'user'));
     }
 
     /**
@@ -55,8 +56,8 @@ abstract class CrudController extends Controller
     {
         $titulo = 'Editar' . $this->data['titulo'];
         $data = $this->model->find($id);
-
-        return view($this->route . '.edit', compact('data', 'titulo', 'descricao'));
+        $user = $this->data['user'];
+        return view($this->route . '.edit', compact('data', 'titulo', 'descricao', 'user'));
     }
 
     /**

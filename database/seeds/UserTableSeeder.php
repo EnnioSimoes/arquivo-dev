@@ -22,7 +22,6 @@ class UserTableSeeder extends Seeder
             'email' => 'admin@admin.com.br',
             'password' => bcrypt(123456),
             'remember_token' => str_random(10),
-            'grupo_id' => rand(1, 5),
             'ativo' => 1,
         ]);     
         

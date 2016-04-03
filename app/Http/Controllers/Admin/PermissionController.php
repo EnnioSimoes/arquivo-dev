@@ -2,22 +2,21 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Model\Grupo;
+use App\Model\Permission;
 use Illuminate\Http\Request;
 
-class GruposController extends CrudController
+class PermissionController extends CrudController
 {
     public $data = [];
-    public $categorias;
 
-    public function __construct(Request $request, Grupo $grupos)
+    public function __construct(Request $request, Permission $permissions)
     {
         parent::__construct($request);
 
-        $this->data['titulo'] = 'Grupos';
-        $this->model = $grupos;
-        $this->route = 'admin.grupos';
-        $this->buscar_em = 'nome';
+        $this->data['titulo'] = 'Permissões';
+        $this->model = $permissions;
+        $this->route = 'admin.permissions';
+        $this->buscar_em = 'name';
     }
 
     // /**
@@ -30,12 +29,6 @@ class GruposController extends CrudController
     // {
     //     $data = $request->all();
     //     unset($data['_token']);
-    //
-    //     if ($data['slug'] == '') {
-    //         $data['slug'] = str_slug($data['nome']);
-    //     } else {
-    //         $data['slug'] = str_slug($data['slug']);
-    //     }
     //
     //     if ($this->model->create($data)) {
     //         return redirect()->route($this->route . '.index')->with('status', 'Post inserido com sucesso!');
