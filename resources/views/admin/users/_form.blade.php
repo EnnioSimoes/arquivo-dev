@@ -71,20 +71,28 @@
     {!! Form::hidden('y1') !!}
     {!! Form::hidden('x2') !!}
     {!! Form::hidden('y2') !!}
+<script src="{{ asset('/assets/admin/js/jquery.imgareaselect.pack.js') }}"></script>
+<script src="{{ asset('/assets/admin/js/classes/ManipulaImagensClass.js') }}"></script>
+<script type="text/javascript">
+
+</script>
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#imageCanvas').imgAreaSelect({
-            // var canvas = this;
-            // console.log($('#imageCanvas'));
-            // canvas.removeClass('hidden');
-            onSelectEnd: function (img, selection) {
-                $('input[name="x1"]').val(selection.x1);
-                $('input[name="y1"]').val(selection.y1);
-                $('input[name="x2"]').val(selection.x2);
-                $('input[name="y2"]').val(selection.y2);
-            }
-        });
+        var teste = new ManipulaImagensClass();
+        teste.iniciar();        
+        
+//        $('#imageCanvas').imgAreaSelect({
+//            // var canvas = this;
+//            // console.log($('#imageCanvas'));
+//            // canvas.removeClass('hidden');
+//            onSelectEnd: function (img, selection) {
+//                $('input[name="x1"]').val(selection.x1);
+//                $('input[name="y1"]').val(selection.y1);
+//                $('input[name="x2"]').val(selection.x2);
+//                $('input[name="y2"]').val(selection.y2);
+//            }
+//        });
     });
 </script>
 <script type="text/javascript">
