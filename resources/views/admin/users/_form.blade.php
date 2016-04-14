@@ -10,7 +10,7 @@
             @endif
             {!! Form::file('avatar', ['id' => 'imageLoader']) !!}
             <p class="help-block">Selecione a area para cortar</p>
-            <div style="max-width: 450px; max-height: 450px;">
+            <div style="max-width: 450px; max-height: 450px; border: 1px solid red;">
                 <canvas style="max-width: 450px; max-height: 450px;" id="imageCanvas" class="hidden"></canvas>
             </div>
         </div>
@@ -73,9 +73,6 @@
     {!! Form::hidden('y2') !!}
 <script src="{{ asset('/assets/admin/js/jquery.imgareaselect.pack.js') }}"></script>
 <script src="{{ asset('/assets/admin/js/classes/ManipulaImagensClass.js') }}"></script>
-<script type="text/javascript">
-
-</script>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -96,24 +93,24 @@
     });
 </script>
 <script type="text/javascript">
-    var imageLoader = document.getElementById('imageLoader');
-        imageLoader.addEventListener('change', handleImage, false);
-    var canvas = document.getElementById('imageCanvas');
-    var ctx = canvas.getContext('2d');
-
-    function handleImage(e){
-        var reader = new FileReader();
-        reader.onload = function(event){
-            console.log(canvas);
-            $('#imageCanvas').removeClass('hidden');
-            var img = new Image();
-            img.onload = function(){
-                canvas.width = img.width;
-                canvas.height = img.height;
-                ctx.drawImage(img,0,0);
-            }
-            img.src = event.target.result;
-        }
-        reader.readAsDataURL(e.target.files[0]);
-    }
+//    var imageLoader = document.getElementById('imageLoader');
+//        imageLoader.addEventListener('change', handleImage, false);
+//    var canvas = document.getElementById('imageCanvas');
+//    var ctx = canvas.getContext('2d');
+//
+//    function handleImage(e) {
+//        var reader = new FileReader();
+//        reader.onload = function(event) {
+//            console.log(canvas);
+//            $('#imageCanvas').removeClass('hidden');
+//            var img = new Image();
+//            img.src = event.target.result;
+//            img.onload = function(){
+//                canvas.width = img.width;
+//                canvas.height = img.height;
+//                ctx.drawImage(img, 0, 0);
+//            }
+//        };
+//        reader.readAsDataURL(e.target.files[0]);
+//    }
 </script>
