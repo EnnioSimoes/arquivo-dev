@@ -1,5 +1,6 @@
 
 var ManipulaImagensClass = (function () {
+    "use strict";
     function ManipulaImagens() {
         this.imageLoader = '';
         this.canvas = '';
@@ -30,32 +31,24 @@ var ManipulaImagensClass = (function () {
             });
 
             obj.imageLoader = document.getElementById('imageLoader');
-            obj.imageLoader.addEventListener('change', function(e) {
+            obj.imageLoader.addEventListener('change', function (e) {
                 var reader = new FileReader();
-                reader.onload = function(event) {
+                reader.onload = function (event) {
                     $('#imageCanvas').removeClass('hidden');
                     var img = new Image();
                     img.src = event.target.result;
-                    img.onload = function(){
+                    img.onload = function () {
                         obj.canvas.width = img.width;
                         obj.canvas.height = img.height;
                         obj.ctx.drawImage(img, 0, 0);
-                    }
+                    };
                 };
                 reader.readAsDataURL(e.target.files[0]);
             }, false);
             obj.canvas = document.getElementById('imageCanvas');
             obj.ctx = obj.canvas.getContext('2d');
-        },
+        }
     };
     
     return ManipulaImagens;
 })();
-
-
-
-imageLoader = {
-    addEventListener: function(a, b, c) {
-        b();
-    },
-};

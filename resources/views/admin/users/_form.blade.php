@@ -10,7 +10,7 @@
             @endif
             {!! Form::file('avatar', ['id' => 'imageLoader']) !!}
             <p class="help-block">Selecione a area para cortar</p>
-            <div style="max-width: 450px; max-height: 450px; border: 1px solid red;">
+            <div style="max-width: 450px; max-height: 450px;">
                 <canvas style="max-width: 450px; max-height: 450px;" id="imageCanvas" class="hidden"></canvas>
             </div>
         </div>
@@ -77,40 +77,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         var teste = new ManipulaImagensClass();
-        teste.iniciar();        
-        
-//        $('#imageCanvas').imgAreaSelect({
-//            // var canvas = this;
-//            // console.log($('#imageCanvas'));
-//            // canvas.removeClass('hidden');
-//            onSelectEnd: function (img, selection) {
-//                $('input[name="x1"]').val(selection.x1);
-//                $('input[name="y1"]').val(selection.y1);
-//                $('input[name="x2"]').val(selection.x2);
-//                $('input[name="y2"]').val(selection.y2);
-//            }
-//        });
+        teste.iniciar();
     });
 </script>
-<script type="text/javascript">
-//    var imageLoader = document.getElementById('imageLoader');
-//        imageLoader.addEventListener('change', handleImage, false);
-//    var canvas = document.getElementById('imageCanvas');
-//    var ctx = canvas.getContext('2d');
-//
-//    function handleImage(e) {
-//        var reader = new FileReader();
-//        reader.onload = function(event) {
-//            console.log(canvas);
-//            $('#imageCanvas').removeClass('hidden');
-//            var img = new Image();
-//            img.src = event.target.result;
-//            img.onload = function(){
-//                canvas.width = img.width;
-//                canvas.height = img.height;
-//                ctx.drawImage(img, 0, 0);
-//            }
-//        };
-//        reader.readAsDataURL(e.target.files[0]);
-//    }
-</script>
+
