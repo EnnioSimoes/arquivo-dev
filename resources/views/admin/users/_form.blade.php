@@ -2,17 +2,18 @@
     <div class="col-md-6">
         <div class="form-group">
             {!! Form::label('Imagem', 'Imagem:') !!}
-            @if(isset($data->avatar) && $data->avatar != '')
                 <br>
-                <img src="{{ asset('assets/images/avatar') }}/{{ $data->avatar }}" style="max-width: 500px; max-height: 400px;">
+                @if(isset($data->avatar) && $data->avatar != '')
+                    <img id="imageAvatar" src="{{ asset('assets/images/avatar') }}/{{ $data->avatar }}" style="max-width: 500px; max-height: 400px;">
+                @endif
+                <div style="max-width: 500px; max-height: 500px;">
+                    <canvas style="max-width: 500px; max-height: 500px;" id="imageCanvas" class="hidden"></canvas>
+                </div>
+                <div id="alertCropImage" class="alert alert-warning hidden" role="alert"></div>
                 <br>
                 <br>
-            @endif
             {!! Form::file('avatar', ['id' => 'imageLoader']) !!}
             <p class="help-block">Selecione a area para cortar</p>
-            <div style="max-width: 450px; max-height: 450px;">
-                <canvas style="max-width: 450px; max-height: 450px;" id="imageCanvas" class="hidden"></canvas>
-            </div>
         </div>
         <div class="form-group">
             {!! Form::label('Nome', 'Nome:') !!}
@@ -80,4 +81,3 @@
         teste.iniciar();
     });
 </script>
-
