@@ -29,15 +29,11 @@
   <div class="login-logo">
     <a href="#"><b>Arquivo</b>DEV</a>
   </div>
+
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Sign in to start your session</p>
-    @if (session('status'))
-        <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            {{ session('status') }}
-        </div>
-    @endif
+    <p class="login-box-msg">Faça login para começar a sua sessão</p>
+
     <form action="/auth/login" method="post">
       {!! csrf_field() !!}
       <div class="form-group has-feedback">
@@ -63,18 +59,23 @@
         <!-- /.col -->
       </div>
     </form>
-
+    @if (count($errors) > 0)
+        @foreach ($errors->all() as $error)
+            <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                {{ $error }}
+            </div>
+        @endforeach
+    @endif
     <div class="social-auth-links text-center">
       <p>- OR -</p>
-      <a href="#" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i> Sign in using
-        GitHub</a>
-      <a href="#" class="btn btn-block btn-social btn-bitbucket btn-flat"><i class="fa fa-bitbucket"></i> Sign in using
-        Bitbucket</a>
+      <a href="#" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i>Entre usando GitHub</a>
+      <a href="#" class="btn btn-block btn-social btn-bitbucket btn-flat"><i class="fa fa-bitbucket"></i>Entre usando Bitbucket</a>
     </div>
     <!-- /.social-auth-links -->
 
-    <a href="#">I forgot my password</a><br>
-    <a href="register.html" class="text-center">Register a new membership</a>
+    <a href="#">Esqueci minha senha</a><br>
+    <a href="register.html" class="text-center">Registrar um novo membro</a>
 
   </div>
   <!-- /.login-box-body -->
