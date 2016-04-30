@@ -18,7 +18,7 @@ abstract class CrudController extends Controller
     {
         // Exibe dados do usuario autenticado
         if ($request->user()) {
-            $this->data['user'] = $request->user();
+            $this->data['usuario_logado'] = $request->user();
         }
     }
 
@@ -29,7 +29,6 @@ abstract class CrudController extends Controller
      */
     public function index()
     {
-        // dd($this->data['user']->name);
         $this->data['data'] = $this->model->orderBy('id', 'desc')->paginate(9);
         return view($this->route . '.index')->with($this->data);
     }
@@ -42,8 +41,8 @@ abstract class CrudController extends Controller
     public function create()
     {
         $titulo = 'Adicionar ' . $this->data['titulo'];
-        $user = $this->data['user'];
-        return view($this->route . '.create', compact('titulo', 'user'));
+        $usuario_logado = $this->data['usuario_logado'];
+        return view($this->route . '.create', compact('titulo', 'usuario_logado'));
     }
 
     /**
@@ -56,8 +55,8 @@ abstract class CrudController extends Controller
     {
         $titulo = 'Editar' . $this->data['titulo'];
         $data = $this->model->find($id);
-        $user = $this->data['user'];
-        return view($this->route . '.edit', compact('data', 'titulo', 'descricao', 'user'));
+        $usuario_logado = $this->data['usuario_logado'];
+        return view($this->route . '.edit', compact('data', 'titulo', 'descricao', 'usuario_logado'));
     }
 
     /**

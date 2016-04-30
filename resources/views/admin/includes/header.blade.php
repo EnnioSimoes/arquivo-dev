@@ -23,7 +23,7 @@
                     <a href="#">
                       <div class="pull-left">
                         <!-- User Image -->
-                        <img src="{{ asset('/assets/images/avatar') }}/{{ isset($user) ? $user->avatar : 'NULL'}}" class="img-circle" alt="User Image">
+                        <img src="{{ asset('/assets/images/avatar') }}/{{ isset($usuario_logado) ? $usuario_logado->avatar : 'NULL'}}" class="img-circle" alt="User Image">
                       </div>
                       <!-- Message title and timestamp -->
                       <h4>
@@ -107,18 +107,18 @@
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="{{ asset('/assets/images/avatar') }}/{{ isset($user) ? $user->avatar : 'NULL'}}" class="user-image" alt="User Image">
+              <img src="{{ asset('/assets/images/avatar') }}/{{ isset($usuario_logado) ? $usuario_logado->avatar : 'NULL'}}" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">{{ isset($user) ? $user->name : 'NULL' }}</span>
+              <span class="hidden-xs">{{ isset($usuario_logado) ? $usuario_logado->name : 'NULL' }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img src="{{ asset('/assets/images/avatar') }}/{{ isset($user) ? $user->avatar : 'NULL'}}" class="img-circle" alt="User Image">
+                <img src="{{ asset('/assets/images/avatar') }}/{{ isset($usuario_logado) ? $usuario_logado->avatar : 'NULL'}}" class="img-circle" alt="User Image">
 
                 <p>
-                  {{ isset($user) ? $user->name : 'NULL' }} - {{ isset($user) ? $user->sobrenome : NULL}}
-                  <small>Member since {{ isset($user) ? $user->created_at : 'NULL'}}</small>
+                  {{ isset($usuario_logado) ? $usuario_logado->name : 'NULL' }} - {{ isset($usuario_logado) ? $usuario_logado->sobrenome : NULL}}
+                  <small>Member since {{ isset($usuario_logado) ? $usuario_logado->created_at : 'NULL'}}</small>
                 </p>
               </li>
               <!-- Menu Body -->

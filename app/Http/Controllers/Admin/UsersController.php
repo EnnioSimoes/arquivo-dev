@@ -31,11 +31,11 @@ class UsersController extends CrudController
      */
     public function create()
     {
+        $titulo = 'Editar Usuário';
         $roles = $this->roles->get();
-        // dd($roles);
         $titulo = 'Novo Usuário';
-        $user = $this->data['user'];
-        return view($this->route . '.create', compact('titulo', 'user', 'roles'));
+        $usuario_logado = $this->data['usuario_logado'];
+        return view($this->route . '.create', compact('titulo', '$usuario_logado', 'roles'));
     }
 
     /**
@@ -48,13 +48,13 @@ class UsersController extends CrudController
     {
         $titulo = 'Editar Usuário';
         $roles = $this->roles->get();
-        $user = $this->data['user'];
+        $usuario_logado = $this->data['usuario_logado'];
         $data = $this->model->where('id', $id)
         ->select(['id', 'name', 'sobrenome', 'email', 'avatar', 'remember_token', 'created_at', 'updated_at', 'ativo'])
         ->get()[0];
         // $user_roles = $data->roles;
         // dd($data->roles);
-        return view($this->route . '.edit', compact('data', 'titulo', 'roles', 'user'));
+        return view($this->route . '.edit', compact('data', 'titulo', 'roles', 'usuario_logado'));
     }
 
     /**

@@ -48,13 +48,13 @@
         <div class="col-xs-8">
           <div class="checkbox icheck">
             <label>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="remember"> Remember Me
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="remember"> Lembrar-me
             </label>
           </div>
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Entrar</button>
         </div>
         <!-- /.col -->
       </div>
@@ -68,14 +68,14 @@
         @endforeach
     @endif
     <div class="social-auth-links text-center">
-      <p>- OR -</p>
+      <p>- OU -</p>
       <a href="#" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i>Entre usando GitHub</a>
       <a href="#" class="btn btn-block btn-social btn-bitbucket btn-flat"><i class="fa fa-bitbucket"></i>Entre usando Bitbucket</a>
     </div>
     <!-- /.social-auth-links -->
 
     <a href="#">Esqueci minha senha</a><br>
-    <a href="register.html" class="text-center">Registrar um novo membro</a>
+    <a href="{{ route('auth.register') }}" class="text-center">Registrar como novo membro</a>
 
   </div>
   <!-- /.login-box-body -->

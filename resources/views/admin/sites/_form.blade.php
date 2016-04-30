@@ -9,17 +9,18 @@
 
 <div class="form-group">
     {!! Form::label('Logotipo', 'Logotipo:') !!}
+    <br>
     @if(isset($data->logotipo) && $data->logotipo != '')
-    <br>
-    <img src="{{ asset('assets/images/sites') }}/{{ $data->logotipo }}" style="max-width: 500px; max-height: 500px;">
-    <br>
-    <br>
+        <img id="imageAvatar" src="{{ asset('assets/images/sites') }}/{{ $data->logotipo }}" style="max-width: 500px; max-height: 400px;">
     @endif
+    <div style="max-width: 500px; max-height: 500px;">
+        <canvas style="max-width: 500px; max-height: 500px;" id="imageCanvas" class="hidden"></canvas>
+    </div>
+    <div id="alertCropImage" class="alert alert-warning hidden" role="alert"></div>
+    <br>
+    <br>
     {!! Form::file('logotipo', ['id' => 'imageLoader']) !!}
     <p class="help-block">Selecione a area para cortar</p>
-    <div style="max-width: 700px; max-height: 700px;">
-        <canvas id="imageCanvas" class="hidden"></canvas>
-    </div>
 </div>
 
 <div class="form-group">
@@ -53,40 +54,12 @@
     {!! Form::hidden('x2') !!}
     {!! Form::hidden('y2') !!}
 
+<script src="{{ asset('/assets/admin/js/jquery.imgareaselect.pack.js') }}"></script>
+<script src="{{ asset('/assets/admin/js/classes/ManipulaImagensClass.js') }}"></script>
+
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#imageCanvas').imgAreaSelect({
-            // var canvas = this;
-            // console.log($('#imageCanvas'));
-            // canvas.removeClass('hidden');
-            onSelectEnd: function (img, selection) {
-                $('input[name="x1"]').val(selection.x1);
-                $('input[name="y1"]').val(selection.y1);
-                $('input[name="x2"]').val(selection.x2);
-                $('input[name="y2"]').val(selection.y2);
-            }
-        });
+        var teste = new ManipulaImagensClass();
+        teste.iniciar();
     });
-</script>
-<script type="text/javascript">
-    var imageLoader = document.getElementById('imageLoader');
-        imageLoader.addEventListener('change', handleImage, false);
-    var canvas = document.getElementById('imageCanvas');
-    var ctx = canvas.getContext('2d');
-
-    function handleImage(e){
-        var reader = new FileReader();
-        reader.onload = function(event){
-            console.log(canvas);
-            $('#imageCanvas').removeClass('hidden');
-            var img = new Image();
-            img.onload = function(){
-                canvas.width = img.width;
-                canvas.height = img.height;
-                ctx.drawImage(img,0,0);
-            }
-            img.src = event.target.result;
-        }
-        reader.readAsDataURL(e.target.files[0]);
-    }
 </script>

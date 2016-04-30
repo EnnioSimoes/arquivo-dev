@@ -37,8 +37,9 @@ class PostsController extends CrudController
         $sites = $this->sites->lists('nome', 'id');
         $titulo = 'Post';
         $descricao = 'Criar Novo Post';
+        $usuario_logado = $this->data['usuario_logado'];
 
-        return view($this->route . '.create', compact('categorias', 'sites', 'titulo', 'descricao'));
+        return view($this->route . '.create', compact('usuario_logado', 'categorias', 'sites', 'titulo', 'descricao'));
     }
 
     /**
@@ -70,10 +71,11 @@ class PostsController extends CrudController
         $data = $this->model->find($id);
         $titulo = 'Post';
         $descricao = 'Editar Post';
+        $usuario_logado = $this->data['usuario_logado'];
 
         $categorias = $this->categorias->lists('nome', 'id');
         $sites = $this->sites->lists('nome', 'id');
-        return view($this->route . '.edit', compact('data', 'categorias', 'sites', 'titulo', 'descricao'));
+        return view($this->route . '.edit', compact('usuario_logado', 'data', 'categorias', 'sites', 'titulo', 'descricao'));
     }
 
     /**
