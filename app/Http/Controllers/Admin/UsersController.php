@@ -35,7 +35,7 @@ class UsersController extends CrudController
         $roles = $this->roles->get();
         $titulo = 'Novo Usuário';
         $usuario_logado = $this->data['usuario_logado'];
-        return view($this->route . '.create', compact('titulo', '$usuario_logado', 'roles'));
+        return view($this->route . '.create', compact('titulo', 'usuario_logado', 'roles'));
     }
 
     /**
