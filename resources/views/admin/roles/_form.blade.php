@@ -8,7 +8,7 @@
 </div> --}}
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-3">
         <h3>Escolha um grupo de usuários</h3><hr>
         <select class="form-control">
             <option>Administrador</option>
@@ -19,10 +19,10 @@
 </div>
 <h3>Privilégios disponíveis</h3><hr>
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-sm-6 col-md-3">
         <h4>Posts</h4>
         <?php for ($i=0; $i < 5; $i++): ?>
-            <div class="checkbox-style form-group pull-left">
+            <div class="checkbox-style form-group">
                 <input type="checkbox" name="roles[]" value="2" id="role-2" autocomplete="off">
                 <div class="btn-group">
                     <label for="role-2" class="btn btn-default btn-xs">
@@ -36,12 +36,11 @@
             </div>
         <?php endfor; ?>
     </div>
-</div>
-<div class="row">
-    <div class="col-md-6">
+
+    <div class="col-sm-6 col-md-3">
         <h4>Categorias</h4>
         <?php for ($i=0; $i < 5; $i++): ?>
-            <div class="checkbox-style form-group pull-left">
+            <div class="checkbox-style form-group">
                 <input type="checkbox" name="roles[]" value="2" id="role-2" autocomplete="off">
                 <div class="btn-group">
                     <label for="role-2" class="btn btn-default btn-xs">
@@ -55,12 +54,11 @@
             </div>
         <?php endfor; ?>
     </div>
-</div>
-<div class="row">
-    <div class="col-md-6">
+
+    <div class="col-sm-6 col-md-3">
         <h4>Sites</h4>
         <?php for ($i=0; $i < 5; $i++): ?>
-            <div class="checkbox-style form-group pull-left">
+            <div class="checkbox-style form-group">
                 <input type="checkbox" name="roles[]" value="2" id="role-2" autocomplete="off">
                 <div class="btn-group">
                     <label for="role-2" class="btn btn-default btn-xs">
@@ -74,12 +72,11 @@
             </div>
         <?php endfor; ?>
     </div>
-</div>
-<div class="row">
-    <div class="col-md-6">
+
+    <div class="col-sm-6 col-md-3">
         <h4>Usuários</h4>
         <?php for ($i=0; $i < 5; $i++): ?>
-            <div class="checkbox-style form-group pull-left">
+            <div class="checkbox-style form-group">
                 <input type="checkbox" name="roles[]" value="2" id="role-2" autocomplete="off">
                 <div class="btn-group">
                     <label for="role-2" class="btn btn-default btn-xs">
