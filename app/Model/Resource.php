@@ -2,9 +2,9 @@
 
 namespace App\Model;
 
-use Zizaco\Entrust\EntrustPermission;
+use Illuminate\Database\Eloquent\Model;
 
-class Resource extends EntrustPermission
+class Resource extends Model
 {
     protected $fillable = [
         'name',
