@@ -22,16 +22,16 @@ class CreateResourcesTable extends Migration
         });
 
         // Create table for associating permissions to roles (Many-to-Many)
-        Schema::create('resources_permissions', function (Blueprint $table) {
-            $table->integer('resources_id')->unsigned();
+        Schema::create('resource_permission', function (Blueprint $table) {
+            $table->integer('resource_id')->unsigned();
             $table->integer('permission_id')->unsigned();
 
-            $table->foreign('resources_id')->references('id')->on('resources')
+            $table->foreign('resource_id')->references('id')->on('resources')
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('permission_id')->references('id')->on('permissions')
                 ->onUpdate('cascade')->onDelete('cascade');
 
-            $table->primary(['resources_id', 'permission_id']);
+            $table->primary(['resource_id', 'permission_id']);
         });
 
     }
@@ -43,7 +43,7 @@ class CreateResourcesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('resources_permissions');
+        Schema::drop('resource_permission');
         Schema::drop('resources');
     }
 }

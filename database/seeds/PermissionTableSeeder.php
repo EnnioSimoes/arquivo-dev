@@ -13,37 +13,43 @@ class PermissionTableSeeder extends Seeder
     public function run()
     {
     	Permission::truncate();
-    	
+
         factory(Permission::class)->create([
-            'name' => 'create-user',
-            'display_name' => 'Criar usuários',
-            'description' => ''
-        ]);
-        
-        factory(Permission::class)->create([
-            'name' => 'list-user',
-            'display_name' => 'Listar usuários',
+            'name' => 'view',
+            'display_name' => 'Ver',
             'description' => ''
         ]);
 
         factory(Permission::class)->create([
-            'name' => 'edit-user',
-            'display_name' => 'Editar usuários',
+            'name' => 'create',
+            'display_name' => 'Criar',
             'description' => ''
         ]);
 
         factory(Permission::class)->create([
-            'name' => 'update-user',
-            'display_name' => 'Atualizar usuários',
+            'name' => 'list',
+            'display_name' => 'Listar',
             'description' => ''
         ]);
 
         factory(Permission::class)->create([
-            'name' => 'delete-user',
-            'display_name' => 'Exluir usuários',
+            'name' => 'edit',
+            'display_name' => 'Editar',
             'description' => ''
         ]);
-        
+
+        factory(Permission::class)->create([
+            'name' => 'update',
+            'display_name' => 'Atualizar',
+            'description' => ''
+        ]);
+
+        factory(Permission::class)->create([
+            'name' => 'delete',
+            'display_name' => 'Exluir',
+            'description' => ''
+        ]);
+
         factory(Permission::class, 0)->create();
     }
 }

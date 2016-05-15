@@ -1,4 +1,4 @@
-<?php
+compose<?php
 
 use Illuminate\Database\Seeder;
 use App\Model\Resource;
