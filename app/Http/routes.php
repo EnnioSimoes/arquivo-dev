@@ -83,5 +83,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'as' => 'admin.'], fu
     Route::post('permissions/update/{id}', ['as' => 'permissions.update', 'uses' => 'Admin\PermissionController@update']);
     Route::get('permissions/search/', ['as' => 'permissions.search', 'uses' => 'Admin\PermissionController@search']);
 
+    /** ROTAS Resources **/
+    Route::get('resources', ['as' => 'resources.index', 'uses' => 'Admin\ResourceController@index']);
+    Route::get('resources/create', ['as' => 'resources.create', 'uses' => 'Admin\ResourceController@create']);
+    Route::get('resources/edit/{id}', ['as' => 'resources.edit', 'uses' => 'Admin\ResourceController@edit']);
+    Route::get('resources/delete/{id}', ['as' => 'resources.delete', 'uses' => 'Admin\ResourceController@delete']);
+    Route::post('resources/store', ['as' => 'resources.store', 'uses' => 'Admin\ResourceController@store']);
+    Route::post('resources/update/{id}', ['as' => 'resources.update', 'uses' => 'Admin\ResourceController@update']);
+    Route::get('resources/search/', ['as' => 'resources.search', 'uses' => 'Admin\ResourceController@search']);
+
 
 });

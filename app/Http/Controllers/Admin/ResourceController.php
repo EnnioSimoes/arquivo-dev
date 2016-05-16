@@ -4,28 +4,30 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Model\Resource;
 
-class ResourceController extends Controller
+class ResourceController extends CrudController
 {
 
-    public $data = [];
-
-    public function __construct(Request $request)
+    public function __construct(Request $request, Resource $resource)
     {
         if ($request->user()) {
-            $this->data['user'] = $request->user();
+            $this->data['usuario_logado'] = $request->user();
         }
+        $this->model = $resource;
+        $this->route = 'admin.resources';
+        $this->buscar_em = 'display_name';
     }
 
     /**
-     * Display a listing of the resource.
+     * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function create()
     {
-//            dd($request->user());
+        // $this->data['resources'] = $this->model->lists('nome', 'id');
 
-        return view('admin.perfil.index')->with($this->data);
+        return view($this->route . '.create', $this->data);
     }
 }
