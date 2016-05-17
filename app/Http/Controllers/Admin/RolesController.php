@@ -37,4 +37,9 @@ class RolesController extends CrudController
         dd($request);
     }
 
+    public function manager()
+    {
+        return view('admin.roles.manager');
+    }
+
 }

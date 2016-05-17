@@ -52,6 +52,9 @@
             <li><a href="{{ route('admin.permissions.index') }}"><i class="fa fa-link"></i><span>Permissões</span></a></li>
           </ul>
         </li>
+        <li>
+            <a href="{{ route('admin.roles.index') }}"><i class="fa fa-link"></i> <span>Papeis / Permissões</span></a>
+        </li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
