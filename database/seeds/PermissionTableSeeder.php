@@ -17,37 +17,37 @@ class PermissionTableSeeder extends Seeder
         factory(Permission::class)->create([
             'name' => 'view',
             'display_name' => 'Ver',
-            'description' => ''
+            'description' => 'Descricao'
         ]);
 
         factory(Permission::class)->create([
             'name' => 'create',
             'display_name' => 'Criar',
-            'description' => ''
+            'description' => 'Descricao'
         ]);
 
         factory(Permission::class)->create([
             'name' => 'list',
             'display_name' => 'Listar',
-            'description' => ''
+            'description' => 'Descricao'
         ]);
 
         factory(Permission::class)->create([
             'name' => 'edit',
             'display_name' => 'Editar',
-            'description' => ''
+            'description' => 'Descricao'
         ]);
 
         factory(Permission::class)->create([
             'name' => 'update',
             'display_name' => 'Atualizar',
-            'description' => ''
+            'description' => 'Descricao'
         ]);
 
         factory(Permission::class)->create([
             'name' => 'delete',
             'display_name' => 'Exluir',
-            'description' => ''
+            'description' => 'Descricao'
         ]);
 
         factory(Permission::class, 0)->create();

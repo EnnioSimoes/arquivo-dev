@@ -40,17 +40,23 @@ class RolesController extends CrudController
         $permissions = $role['permission'];
         unset($role['permission']);
 
+        $role = $this->model->create($role);
+
         // dd($permissions);
 
-        $role = $this->model->create($role);
         foreach ($permissions as $permission) {
             $role->permission()->attach($permission);
         }
+        return redirect('admin/roles/')->with('status', 'Papel inserido com sucesso!');
     }
 
     public function manager()
     {
 
+        $this->data['roles'] = $this->model->get();
+        $this->data['permissions'] = $this->permission->get();
+
+        // dd($this->data['roles'][3]->permission()->get()[2]->name);
 
         return view('admin.roles.manager', $this->data);
     }

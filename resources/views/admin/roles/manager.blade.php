@@ -22,16 +22,28 @@
 		  <table class="table table-hover">
 			<tr>
 			  <th>Permissões</th>
-			  <th><p class="pull-right">Administrador</p></th>
-			  <th><p class="pull-right">Editor</p></th>
-			  <th><p class="pull-right">Usuário</p></th>
+              @foreach ($roles as $key => $role)
+                  <th><p class="pull-right">{{ $role->display_name }}</p></th>
+              @endforeach
 			</tr>
-			<tr>
-			  <td><a href="" >Criar Posts</a></td>
-			  <td><input class="pull-right" type="checkbox"></td>
-			  <td><input class="pull-right" type="checkbox"></td>
-			  <td><input class="pull-right" type="checkbox"></td>
-			</tr>
+            <!-- dd($this->data['roles'][3]->permission()->get()[2]->name); -->
+
+            @foreach($permissions as $permission)
+                <tr>
+                    <td><a href="" >{{ $permission->display_name }}</a></td>
+                    @foreach($roles as $key => $role)
+
+                        <td><input class="pull-right" type="checkbox" value="{{ $role->name }}"
+                            @foreach($role->permission as $role_permission)
+                                @if($role_permission->id == $permission->id)
+                                    checked
+                                @endif
+                            @endforeach
+
+                             ></td>
+                    @endforeach
+                </tr>
+            @endforeach
 		  </table>
 		  {{-- @if(isset($search))
 			{!! $data->appends(['table_search' => $search])->render() !!}
