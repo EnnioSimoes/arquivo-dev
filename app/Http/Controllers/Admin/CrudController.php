@@ -85,9 +85,9 @@ abstract class CrudController extends Controller
         unset($data['_token']);
 
         if ($this->model->where('id', $id)->update($data)) {
-            return redirect()->route($this->route . '.index')->with('status', 'Registro alterado com sucesso!');
+            return redirect()->route($this->route . '.index')->with('status-ok', 'Registro alterado com sucesso!');
         } else {
-            return redirect()->route($this->route . '.index')->with('status', 'Ocorreu um erro ao inserir o Post');
+            return redirect()->route($this->route . '.index')->with('status-erro', 'Ocorreu um erro ao inserir o Post');
         }
     }
 
@@ -100,9 +100,9 @@ abstract class CrudController extends Controller
     public function delete($id)
     {
         if ($this->model->where('id', '=', $id)->delete()) {
-            return redirect()->route($this->route . '.index')->with('status', 'Registro excluído com sucesso!');
+            return redirect()->route($this->route . '.index')->with('status-ok', 'Registro excluído com sucesso!');
         } else {
-            return redirect()->route($this->route . '.index')->with('status', 'Ocorreu um erro ao excluir o Post');
+            return redirect()->route($this->route . '.index')->with('status-erro', 'Ocorreu um erro ao excluir o Post');
         }
     }
 

@@ -35,9 +35,9 @@ class SitesController extends CrudController
         $data = $service->cropImage($request, $destino);
 
         if ($this->sites->create($data)) {
-            return redirect('admin/sites/')->with('status', 'Post inserido com sucesso!');
+            return redirect('admin/sites/')->with('status-ok', 'Post inserido com sucesso!');
         } else {
-            return redirect('admin/sites/')->with('status', 'Ocorreu um erro ao inserir o Post');
+            return redirect('admin/sites/')->with('status-erro', 'Ocorreu um erro ao inserir o Post');
         }
     }
 

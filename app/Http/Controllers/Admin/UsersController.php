@@ -75,15 +75,14 @@ class UsersController extends CrudController
             foreach ($request->roles as $roles) {
                 $user->attachRole($roles);
             }
-            return redirect()->route($this->route . '.index')->with('status', 'Usuário inserido com sucesso!');
+            return redirect()->route($this->route . '.index')->with('status-ok', 'Usuário inserido com sucesso!');
         } else {
-            return redirect()->route($this->route . '.index')->with('status', 'Ocorreu um erro ao inserir o Usuário');
+            return redirect()->route($this->route . '.index')->with('status-erro', 'Ocorreu um erro ao inserir o Usuário');
         }
     }
 
     public function update(Request $request, $id)
     {
-        // $r = $this->roles->get();
 
         $destino = 'assets/images/avatar/';
         $data = $this->service->cropImage($request, $destino);
@@ -102,10 +101,9 @@ class UsersController extends CrudController
 
                 $user->attachRoles($request->roles);
             }
-        // if ($this->model->where('id', $id)->update($data)) {
-            return redirect()->route($this->route . '.index')->with('status', 'Usuário alterado com sucesso!');
+            return redirect()->route($this->route . '.index')->with('status-ok', 'Usuário alterado com sucesso!');
         } else {
-            return redirect()->route($this->route . '.index')->with('status', 'Ocorreu um erro ao inserir o Usuário');
+            return redirect()->route($this->route . '.index')->with('status-erro', 'Ocorreu um erro ao inserir o Usuário');
         }
     }
 

@@ -38,9 +38,9 @@ class CategoriasController extends CrudController
         }
 
         if ($this->model->create($data)) {
-            return redirect()->route($this->route . '.index')->with('status', 'Post inserido com sucesso!');
+            return redirect()->route($this->route . '.index')->with('status-ok', 'Post inserido com sucesso!');
         } else {
-            return redirect()->route($this->route . '.index')->with('status', 'Ocorreu um erro ao inserir o Post');
+            return redirect()->route($this->route . '.index')->with('status-erro', 'Ocorreu um erro ao inserir o Post');
         }
     }
 
@@ -56,9 +56,9 @@ class CategoriasController extends CrudController
         }
 
         if ($this->model->where('id', $id)->update($data)) {
-            return redirect()->route($this->route . '.index')->with('status', 'Post alterado com sucesso!');
+            return redirect()->route($this->route . '.index')->with('status-ok', 'Post alterado com sucesso!');
         } else {
-            return redirect()->route($this->route . '.index')->with('status', 'Ocorreu um erro ao inserir o Post');
+            return redirect()->route($this->route . '.index')->with('status-erro', 'Ocorreu um erro ao inserir o Post');
         }
     }
 

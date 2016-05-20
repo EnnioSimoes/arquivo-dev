@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Model\Role;
 use Illuminate\Http\Request;
 use App\Model\Permission;
+use DB;
 
 class RolesController extends CrudController
 {
@@ -37,16 +38,20 @@ class RolesController extends CrudController
         $role = $request->all();
 
         unset($role['_token']);
-        $permissions = $role['permission'];
+        if(isset($role['permission'])) {
+            $permissions = $role['permission'];
+        }
         unset($role['permission']);
 
         $role = $this->model->create($role);
 
         // dd($permissions);
-
-        foreach ($permissions as $permission) {
-            $role->permission()->attach($permission);
+        if(isset($permissions)) {
+            foreach ($permissions as $permission) {
+                $role->permission()->attach($permission);
+            }
         }
+
         return redirect('admin/roles/')->with('status', 'Papel inserido com sucesso!');
     }
 
@@ -56,9 +61,37 @@ class RolesController extends CrudController
         $this->data['roles'] = $this->model->get();
         $this->data['permissions'] = $this->permission->get();
 
-        // dd($this->data['roles'][3]->permission()->get()[2]->name);
-
         return view('admin.roles.manager', $this->data);
+    }
+
+    public function edit($id)
+    {
+        $this->data['data'] = $this->model->find($id);
+        $this->data['permissions'] = $this->permission->get();
+        return view('admin.roles.edit', $this->data);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $role = $request->all();
+        unset($role['_token']);
+        if(isset($role['permission'])){
+            $permissions = $role['permission'];
+        }
+        unset($role['permission']);
+
+        DB::beginTransaction();
+        try {
+            $this->model->where('id', $id)->update($role);
+            $role = $this->model->find($id);
+
+            $role->permission()->sync($permissions);
+            DB::commit();
+            return redirect('admin/roles/')->with('status-ok', 'Registro atualizado com sucesso.');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect('admin/roles/')->with('status-erro', $e);
+        }
     }
 
 }

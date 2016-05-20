@@ -19,7 +19,15 @@
         <h5>Permissões disponíveis</h5>
         @foreach($permissions as $permission)
             <div class="checkbox-style form-group">
-                <input type="checkbox" name="permission[]" value="{{ $permission->id }}" id="permission-{{ $permission->id }}" autocomplete="off">
+                <input type="checkbox" name="permission[]" value="{{ $permission->id }}" id="permission-{{ $permission->id }}" autocomplete="off"
+                @if(isset($data->permission))
+                    @foreach($data->permission as $key => $role_permission)
+                        @if($permission->id == $role_permission->id)
+                            checked
+                        @endif
+                    @endforeach
+                @endif
+                >
                 <div class="btn-group">
                     <label for="permission-{{ $permission->id }}" class="btn btn-default btn-xs">
                         <span class="glyphicon glyphicon-ok"></span>

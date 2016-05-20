@@ -54,9 +54,9 @@ class PostsController extends CrudController
         $data = $this->service->cropImage($request, $destino);
 
         if ($this->model->create($data)) {
-            return redirect()->route($this->route . '.index')->with('status', 'Post inserido com sucesso!');
+            return redirect()->route($this->route . '.index')->with('status-ok', 'Post inserido com sucesso!');
         } else {
-            return redirect()->route($this->route . '.index')->with('status', 'Ocorreu um erro ao inserir o Post');
+            return redirect()->route($this->route . '.index')->with('status-erro', 'Ocorreu um erro ao inserir o Post');
         }
     }
 
@@ -91,9 +91,9 @@ class PostsController extends CrudController
         $data = $this->service->cropImage($request, $destino);
 
         if ($this->model->where('id', $id)->update($data)) {
-            return redirect()->route($this->route . '.index')->with('status', 'Post alterado com sucesso!');
+            return redirect()->route($this->route . '.index')->with('status-ok', 'Post alterado com sucesso!');
         } else {
-            return redirect()->route($this->route . '.index')->with('status', 'Ocorreu um erro ao inserir o Post');
+            return redirect()->route($this->route . '.index')->with('status-erro', 'Ocorreu um erro ao inserir o Post');
         }
 
     }
