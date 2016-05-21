@@ -45,7 +45,6 @@ class RolesController extends CrudController
 
         $role = $this->model->create($role);
 
-        // dd($permissions);
         if(isset($permissions)) {
             foreach ($permissions as $permission) {
                 $role->permission()->attach($permission);
@@ -92,6 +91,18 @@ class RolesController extends CrudController
             DB::rollback();
             return redirect('admin/roles/')->with('status-erro', $e);
         }
+    }
+
+    public function ajaxStore(Request $request)
+    {
+        $dados = $request->all();
+        // dd($request->all());
+        $role = $this->model->find($dados['role_id']);
+
+        $role->permission()->sync([$dados['permission_id']]);
+
+        echo "FOI";
+        exit;
     }
 
 }

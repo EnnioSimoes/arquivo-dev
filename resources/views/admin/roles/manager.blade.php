@@ -32,7 +32,7 @@
                                     @foreach($roles as $key => $role)
 
                                         <td>
-                                            <input class="pull-right" type="checkbox" value="{{ $role->name }}"
+                                            <input class="act-check-permission-role pull-right grupo-{{ $role->name }}" type="checkbox" value="{{ $role->name }}" data-role-id="{{ $role->id }}" data-permission-id="{{ $permission->id }}"
                                             @foreach($role->permission as $role_permission)
                                                 @if($role_permission->id == $permission->id)
                                                     checked
@@ -47,7 +47,9 @@
                     </div>
                 </div>
             </div>
+            <button class="act-envia-permission-role btn btn-primary pull-right">Gravar</button>
         </div>
     </div>
-
+    <script src="{{ asset('/assets/admin/js/classes/RolesClass.js') }}"></script>
+    <script src="{{ asset('/assets/admin/js/roles.js') }}"></script>
 @endsection

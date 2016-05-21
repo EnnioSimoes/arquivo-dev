@@ -74,6 +74,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'as' => 'admin.'], fu
     Route::post('roles/update/{id}', ['as' => 'roles.update', 'uses' => 'Admin\RolesController@update']);
     Route::get('roles/search/', ['as' => 'roles.search', 'uses' => 'Admin\RolesController@search']);
     Route::get('roles/manager/', ['as' => 'roles.manager', 'uses' => 'Admin\RolesController@manager']);
+    Route::post('roles/ajax-store/', ['as' => 'roles.ajaxStore', 'uses' => 'Admin\RolesController@ajaxStore']);
 
     /** ROTAS Permission **/
     Route::get('permissions', ['as' => 'permissions.index', 'uses' => 'Admin\PermissionController@index']);

@@ -7,9 +7,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>ArquivoDev - Admin</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+        <!-- jQuery 2.1.4 -->
+        <script src="{{ asset('/bower_components/admin-lte/plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
+
+        <!-- Vue.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.24/vue.min.js"></script>
+
         <!-- Bootstrap 3.3.5 -->
         <link rel="stylesheet" href="{{ asset('/bower_components/admin-lte/bootstrap/css/bootstrap.min.css') }}">
         <!-- Font Awesome -->
@@ -33,8 +41,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <link rel="stylesheet" href="{{ asset('/assets/admin/css/imgareaselect-default.css') }}">
         <link rel="stylesheet" href="{{ asset('/assets/admin/css/admin-style.css') }}">
 
-        <!-- jQuery 2.1.4 -->
-        <script src="{{ asset('/bower_components/admin-lte/plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
+
     </head>
 <!--
 BODY TAG OPTIONS:
@@ -194,8 +201,7 @@ desired effect
         <!-- AdminLTE App -->
         <script src="{{ asset('/bower_components/admin-lte/dist/js/app.min.js') }}"></script>
 
-        <!-- AdminLTE App -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.24/vue.min.js"></script>
+
 
         <!-- Optionally, you can add Slimscroll and FastClick plugins.
         Both of these plugins are recommended to enhance the

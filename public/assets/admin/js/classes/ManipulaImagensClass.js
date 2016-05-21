@@ -1,3 +1,7 @@
+// Certifique-se que o jQuery foi carregado antes desse arquivo
+if (typeof jQuery === "undefined") {
+    throw new Error("Este modulo requer jQuery");
+}
 
 var ManipulaImagensClass = (function () {
     "use strict";

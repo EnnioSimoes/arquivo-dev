@@ -79,7 +79,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        var teste = new ManipulaImagensClass();
-        teste.iniciar();
+        var ManipulaImagens = new ManipulaImagensClass();
+        ManipulaImagens.iniciar();
     });
 </script>
