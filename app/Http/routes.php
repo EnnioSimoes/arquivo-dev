@@ -73,7 +73,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'as' => 'admin.'], fu
     Route::post('roles/store', ['as' => 'roles.store', 'uses' => 'Admin\RolesController@store']);
     Route::post('roles/update/{id}', ['as' => 'roles.update', 'uses' => 'Admin\RolesController@update']);
     Route::get('roles/search/', ['as' => 'roles.search', 'uses' => 'Admin\RolesController@search']);
-    Route::get('roles/manager/', ['as' => 'roles.manager', 'uses' => 'Admin\RolesController@manager']);
+    Route::get('roles/manager/', ['middleware' => ['role:admin'], 'as' => 'roles.manager', 'uses' => 'Admin\RolesController@manager']);
     Route::post('roles/ajax-store/', ['as' => 'roles.ajaxStore', 'uses' => 'Admin\RolesController@ajaxStore']);
 
     /** ROTAS Permission **/
@@ -84,14 +84,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'as' => 'admin.'], fu
     Route::post('permissions/store', ['as' => 'permissions.store', 'uses' => 'Admin\PermissionController@store']);
     Route::post('permissions/update/{id}', ['as' => 'permissions.update', 'uses' => 'Admin\PermissionController@update']);
     Route::get('permissions/search/', ['as' => 'permissions.search', 'uses' => 'Admin\PermissionController@search']);
-
-    /** ROTAS Resources **/
-    Route::get('resources', ['as' => 'resources.index', 'uses' => 'Admin\ResourceController@index']);
-    Route::get('resources/create', ['as' => 'resources.create', 'uses' => 'Admin\ResourceController@create']);
-    Route::get('resources/edit/{id}', ['as' => 'resources.edit', 'uses' => 'Admin\ResourceController@edit']);
-    Route::get('resources/delete/{id}', ['as' => 'resources.delete', 'uses' => 'Admin\ResourceController@delete']);
-    Route::post('resources/store', ['as' => 'resources.store', 'uses' => 'Admin\ResourceController@store']);
-    Route::post('resources/update/{id}', ['as' => 'resources.update', 'uses' => 'Admin\ResourceController@update']);
-    Route::get('resources/search/', ['as' => 'resources.search', 'uses' => 'Admin\ResourceController@search']);
 
 });

@@ -123,11 +123,3 @@ $factory->define(App\Model\Pagina::class, function (Faker\Generator $faker) {
         'ativo' => rand(0, 1),
     ];
 });
-
-$factory->define(App\Model\Resource::class, function (Faker\Generator $faker) {
-    return [
-        'name' => $faker->slug,
-        'display_name' => $faker->name,
-        'description' => $faker->text(100),
-    ];
-});

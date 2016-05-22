@@ -15,39 +15,39 @@ class PermissionTableSeeder extends Seeder
     	Permission::truncate();
 
         factory(Permission::class)->create([
-            'name' => 'view',
-            'display_name' => 'Ver',
-            'description' => 'Descricao'
+            'name' => 'ver-usuarios',
+            'display_name' => 'Ver Usuários',
+            'description' => 'Permissão para visualizar usuários'
         ]);
 
         factory(Permission::class)->create([
-            'name' => 'create',
-            'display_name' => 'Criar',
-            'description' => 'Descricao'
+            'name' => 'criar-usuarios',
+            'display_name' => 'Criar Usúarios',
+            'description' => 'Permissão para usuários'
         ]);
 
         factory(Permission::class)->create([
             'name' => 'list',
-            'display_name' => 'Listar',
-            'description' => 'Descricao'
+            'display_name' => 'Listar usuários',
+            'description' => 'Permissão para Listar usuários'
         ]);
 
         factory(Permission::class)->create([
-            'name' => 'edit',
-            'display_name' => 'Editar',
-            'description' => 'Descricao'
+            'name' => 'editar-usuarios',
+            'display_name' => 'Editar usuários',
+            'description' => 'Permissão para Editar usuários'
         ]);
 
         factory(Permission::class)->create([
-            'name' => 'update',
-            'display_name' => 'Atualizar',
-            'description' => 'Descricao'
+            'name' => 'atualizar-usuarios',
+            'display_name' => 'Atualizar usuários',
+            'description' => 'Permissão para Atualizar usuários'
         ]);
 
         factory(Permission::class)->create([
-            'name' => 'delete',
-            'display_name' => 'Exluir',
-            'description' => 'Descricao'
+            'name' => 'excluir-usuarios',
+            'display_name' => 'Exluir usuários',
+            'description' => 'Permissão para Exluir usuários'
         ]);
 
         factory(Permission::class, 0)->create();

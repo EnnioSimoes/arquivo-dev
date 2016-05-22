@@ -57,8 +57,9 @@ class RolesController extends CrudController
     public function manager()
     {
 
-        $this->data['roles'] = $this->model->get();
-        $this->data['permissions'] = $this->permission->get();
+        // $this->data['roles'] = $this->model->get();
+        $this->data['roles'] = $this->model->orderBy('name', 'asc')->get();
+        $this->data['permissions'] = $this->permission->orderBy('name', 'asc')->get();
 
         return view('admin.roles.manager', $this->data);
     }

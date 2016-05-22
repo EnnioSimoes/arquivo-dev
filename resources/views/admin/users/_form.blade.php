@@ -47,13 +47,11 @@
             @foreach($roles as $role)
                 <div class="checkbox-style form-group">
                         <input type="checkbox" name="roles[]" value="{{$role->id}}" id="role-{{$role->id}}" autocomplete="off"
-                        @if(isset($data->roles))
                             @foreach($data->roles as $role_user)
                                 @if($role_user->pivot->role_id == $role->id)
                                     checked="checked"
                                 @endif
                             @endforeach
-                        @endif
                         />
                     <div class="btn-group">
                         <label for="role-{{$role->id}}" class="btn btn-default btn-xs">

@@ -14,7 +14,7 @@ class UserTableSeeder extends Seeder
     {
 
     	User::truncate();
-    	
+
 
         factory(User::class)->create([
             'name' => 'Admin',
@@ -23,8 +23,16 @@ class UserTableSeeder extends Seeder
             'password' => bcrypt(123456),
             'remember_token' => str_random(10),
             'ativo' => 1,
-        ]);     
-        
+        ]);
+        factory(User::class)->create([
+            'name' => 'Usuário Zuado',
+            'sobrenome' => 'Big Ass User',
+            'email' => 'user@user.com.br',
+            'password' => bcrypt(123456),
+            'remember_token' => str_random(10),
+            'ativo' => 1,
+        ]);
+
         factory(User::class, 15)->create();
     }
 }

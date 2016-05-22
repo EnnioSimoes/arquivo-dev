@@ -44,6 +44,7 @@
         <li>
             <a href="{{ route('admin.sites.index') }}"><i class="fa fa-link"></i> <span>Sites</span></a>
         </li>
+        @role('admin')
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Controle de acesso</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
@@ -55,6 +56,7 @@
         <li>
             <a href="{{ route('admin.roles.manager') }}"><i class="fa fa-link"></i> <span>Papeis / Permissões</span></a>
         </li>
+        @endrole
       </ul>
       <!-- /.sidebar-menu -->
     </section>

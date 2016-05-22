@@ -1,4 +1,7 @@
 @extends('admin/template/admin_template')
+<script src="{{ asset('/bower_components/admin-lte/plugins/pace/pace.min.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('/bower_components/admin-lte/plugins/pace/pace.min.css') }}">
+
 @section('content')
     <div class="row">
         <div class="col-xs-12">
@@ -19,16 +22,16 @@
                 <!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
                     <div class="table-responsive">
-                        <table class="table table-hover">
+                        <table class="manager-roles table table-hover">
                             <tr>
                                 <th>Permissões</th>
                                 @foreach ($roles as $key => $role)
-                                    <th><p class="pull-right">{{ $role->display_name }}</p></th>
+                                    <th><a href="{{route('admin.roles.edit', ['id'=>$role->id]) }}" target="_blank"><p class="pull-right">{{ $role->display_name }}</p></a></th>
                                 @endforeach
                             </tr>
                             @foreach($permissions as $permission)
                                 <tr>
-                                    <td><a href="" >{{ $permission->display_name }}</a></td>
+                                    <td><a href="{{route('admin.permissions.edit', ['id'=>$permission->id]) }}" target="_blank">{{ $permission->display_name }}</a></td>
                                     @foreach($roles as $key => $role)
 
                                         <td>

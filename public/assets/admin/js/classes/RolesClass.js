@@ -2,6 +2,10 @@
 if (typeof jQuery === "undefined") {
     throw new Error("Este modulo requer jQuery");
 }
+// Certifique-se que o jQuery foi carregado antes desse arquivo
+if (typeof Pace === "undefined") {
+    throw new Error("Este modulo requer Pace.js");
+}
 
 var RolesClass = (function(){
 
@@ -40,7 +44,7 @@ var RolesClass = (function(){
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     success: function(retorno) {
-                        console.log(retorno);
+                        // console.log(Pace);
                         // Fazer isso funcionar
                         $(document).ajaxStart(function() { Pace.restart(); })
 

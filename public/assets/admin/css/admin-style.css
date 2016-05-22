@@ -20,3 +20,9 @@
 .checkbox-style {
     margin: 10px;
 }
+table.manager-roles.table tbody tr td {
+    padding: 5px;
+}
+table.manager-roles.table tbody tr td a {
+    font-size: 13px;
+}
