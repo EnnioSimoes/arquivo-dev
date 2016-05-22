@@ -24,40 +24,33 @@ var RolesClass = (function(){
                 var permissions = {};
 
                 $.each(elementos, function(key, value) {
-                    permissions[key] = $(value).attr("data-permission-id");
+                    if($(value).is(':checked')) {
+                        permissions[key] = $(value).attr("data-permission-id");
+                    }
                 });
 
-                // ###########
-                // CONTINUAR AQUI, JA CONSEGUI PEGAR TODOS data-permission-id DO GRUPO CLICADO, AGORA SÓ VERIFICAR QUAIS FORAM CHECADOS
-                // ###########
+                $.ajax({
+                    url: "ajax-store/",
+                    data: {
+                        role_id: data_role_id,
+                        permission_id: permissions
+                    },
+                    type: "POST",
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(retorno) {
+                        console.log(retorno);
+                        // Fazer isso funcionar
+                        $(document).ajaxStart(function() { Pace.restart(); })
 
-
-                // console.dir($(elementos[1]).attr("data-permission-id"));
-                console.dir(data_role_id);
-                console.dir(data_permission_id);
-                console.dir(permissions);
-
-                // $.ajax({
-                //     url: "ajax-store/",
-                //     data: {
-                //         role_id: data_role_id,
-                //         permission_id: data_permission_id
-                //     },
-                //     type: "POST",
-                //     headers: {
-                //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                //     },
-                //     success: function(retorno) {
-                //         console.log(retorno);
-                //     },
-                //     complete: function() {
-                //         //
-                //     }
-                // });
+                    },
+                    complete: function() {
+                    }
+                });
 
             });
         }
     }
-
     return Roles;
 })();

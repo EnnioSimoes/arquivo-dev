@@ -15,8 +15,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- jQuery 2.1.4 -->
         <script src="{{ asset('/bower_components/admin-lte/plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
 
-        <!-- Vue.js -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.24/vue.min.js"></script>
+        <script src="{{ asset('/bower_components/admin-lte/plugins/pace/pace.min.js') }}"></script>
+        <script src="{{ asset('/bower_components/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
+        <script src="{{ asset('/bower_components/admin-lte/plugins/fastclick/fastclick.js') }}"></script>
 
         <!-- Bootstrap 3.3.5 -->
         <link rel="stylesheet" href="{{ asset('/bower_components/admin-lte/bootstrap/css/bootstrap.min.css') }}">

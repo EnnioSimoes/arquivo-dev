@@ -96,10 +96,10 @@ class RolesController extends CrudController
     public function ajaxStore(Request $request)
     {
         $dados = $request->all();
-        // dd($request->all());
+        // dd($dados["permission_id"]);
         $role = $this->model->find($dados['role_id']);
 
-        $role->permission()->sync([$dados['permission_id']]);
+        $role->permission()->sync($dados['permission_id']);
 
         echo "FOI";
         exit;
