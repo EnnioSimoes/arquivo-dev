@@ -2,10 +2,15 @@
 
 namespace App\Model;
 
+use Illuminate\Database\Eloquent\Model;
+use Prettus\Repository\Contracts\Transformable;
+use Prettus\Repository\Traits\TransformableTrait;
 use Zizaco\Entrust\EntrustPermission;
 
-class Permission extends EntrustPermission
+class Permission extends EntrustPermission implements Transformable
 {
+    use TransformableTrait;
+
     protected $fillable = [
         'name',
         'display_name',
@@ -21,4 +26,5 @@ class Permission extends EntrustPermission
     {
         return $this->belongsToMany('App\Model\Resource');
     }
+
 }

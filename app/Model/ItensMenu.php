@@ -3,9 +3,13 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Prettus\Repository\Contracts\Transformable;
+use Prettus\Repository\Traits\TransformableTrait;
 
-class ItensMenu extends Model
+class ItensMenu extends Model implements Transformable
 {
+    use TransformableTrait;
+
     protected $fillable = [
         'menu_id',
         'titulo',
@@ -14,9 +18,10 @@ class ItensMenu extends Model
     ];
 
     public $timestamps = false;
-    
+
     public function menu()
     {
         return $this->belongsTo(Menu::class);
     }
+
 }

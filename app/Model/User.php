@@ -7,15 +7,19 @@ use Illuminate\Auth\Passwords\CanResetPassword;
 //use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-use Illuminate\Database\Eloquent\Model;
     //use Illuminate\Foundation\Auth\Access\Authorizable;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
+use Illuminate\Database\Eloquent\Model;
+use Prettus\Repository\Contracts\Transformable;
+use Prettus\Repository\Traits\TransformableTrait;
 
-class User extends Model implements AuthenticatableContract,
-    //AuthorizableContract,
-    CanResetPasswordContract {
-    use Authenticatable, 
-    //Authorizable, 
+class User extends Model implements Transformable, AuthenticatableContract,
+//AuthorizableContract,
+CanResetPasswordContract
+{
+    use TransformableTrait,
+    Authenticatable,
+    //Authorizable,
     CanResetPassword;
     use EntrustUserTrait; // add this trait to your user model
 
@@ -60,9 +64,10 @@ class User extends Model implements AuthenticatableContract,
     public function categoria() {
             return $this->hasMany(Categoria::class);
     }
-    
+
     public function roles()
     {
         return $this->belongsToMany('App\Model\Role');
-    }    
+    }
+
 }

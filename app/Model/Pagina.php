@@ -3,9 +3,13 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Prettus\Repository\Contracts\Transformable;
+use Prettus\Repository\Traits\TransformableTrait;
 
-class Pagina extends Model
+class Pagina extends Model implements Transformable
 {
+    use TransformableTrait;
+
     protected $fillable = [
         'titulo',
         'slug',
@@ -26,4 +30,5 @@ class Pagina extends Model
     {
         return $this->belongsTo(User::class);
     }
+
 }

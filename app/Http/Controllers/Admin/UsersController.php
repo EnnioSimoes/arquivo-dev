@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Model\User;
+// use App\Model\User;
+use App\Repositories\UserRepository;
+use App\Repositories\RoleRepository;
 use Illuminate\Http\Request;
 use App\Services\UserService;
-use App\Model\Role;
+// use App\Model\Role;
 use DB;
 
 class UsersController extends CrudController
 {
     public $data = [];
 
-    public function __construct(Request $request, User $users, UserService $service, Role $roles)
+    public function __construct(Request $request, UserRepository $users, UserService $service, RoleRepository $roles)
     {
         parent::__construct($request);
 
@@ -49,9 +51,14 @@ class UsersController extends CrudController
         $titulo = 'Editar Usuário';
         $roles = $this->roles->get();
         $usuario_logado = $this->data['usuario_logado'];
-        $data = $this->model->where('id', $id)
-        ->select(['id', 'name', 'sobrenome', 'email', 'avatar', 'remember_token', 'created_at', 'updated_at', 'ativo'])
-        ->get()[0];
+        $data = $this->model->findWhere(
+            ['id' => $id],
+            ['id', 'name', 'sobrenome', 'email', 'avatar', 'remember_token', 'created_at', 'updated_at', 'ativo']
+        )[0];
+        // dd($data[0]);
+        // $data = $this->model->where('id', $id)
+        // ->select(['id', 'name', 'sobrenome', 'email', 'avatar', 'remember_token', 'created_at', 'updated_at', 'ativo'])
+        // ->get()[0];
         // $user_roles = $data->roles;
         // dd($data->roles);
         return view($this->route . '.edit', compact('data', 'titulo', 'roles', 'usuario_logado'));

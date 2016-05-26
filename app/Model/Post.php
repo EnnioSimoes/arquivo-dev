@@ -3,8 +3,13 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Prettus\Repository\Contracts\Transformable;
+use Prettus\Repository\Traits\TransformableTrait;
 
-class Post extends Model {
+class Post extends Model implements Transformable
+{
+    use TransformableTrait;
+
 	protected $fillable = [
 		'titulo',
 		'link',
@@ -36,4 +41,5 @@ class Post extends Model {
 	public function site() {
 		return $this->belongsTo(Site::class);
 	}
+
 }
