@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Model\Categoria;
+use App\Repositories\CategoriaRepository;
+// use App\Model\Categoria;
 use Illuminate\Http\Request;
 
 class CategoriasController extends CrudController
@@ -10,12 +11,12 @@ class CategoriasController extends CrudController
     public $data = [];
     public $categorias;
 
-    public function __construct(Request $request, Categoria $categorias)
+    public function __construct(Request $request, CategoriaRepository $categorias)
     {
         parent::__construct($request);
 
         $this->data['titulo'] = 'Categorias';
-        $this->model = $categorias;
+        $this->repository = $categorias;
         $this->route = 'admin.categorias';
         $this->buscar_em = 'nome';
     }
@@ -37,7 +38,7 @@ class CategoriasController extends CrudController
             $data['slug'] = str_slug($data['slug']);
         }
 
-        if ($this->model->create($data)) {
+        if ($this->repository->create($data)) {
             return redirect()->route($this->route . '.index')->with('status-ok', 'Post inserido com sucesso!');
         } else {
             return redirect()->route($this->route . '.index')->with('status-erro', 'Ocorreu um erro ao inserir o Post');
@@ -55,7 +56,7 @@ class CategoriasController extends CrudController
             $data['slug'] = str_slug($data['slug']);
         }
 
-        if ($this->model->where('id', $id)->update($data)) {
+        if ($this->repository->update($data, $id)) {
             return redirect()->route($this->route . '.index')->with('status-ok', 'Post alterado com sucesso!');
         } else {
             return redirect()->route($this->route . '.index')->with('status-erro', 'Ocorreu um erro ao inserir o Post');

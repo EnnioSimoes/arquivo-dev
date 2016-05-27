@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Model\Site;
+use App\Repositories\SiteRepository;
+// use App\Model\Site;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
 use App\Services\SiteService;
@@ -12,13 +13,13 @@ class SitesController extends CrudController
     public $data = [];
     public $sites;
 
-    public function __construct(Request $request, Site $site)
+    public function __construct(Request $request, SiteRepository $site)
     {
 
         parent::__construct($request);
         $this->sites = $site;
         $this->data['titulo'] = 'Site';
-        $this->model = $site;
+        $this->repository = $site;
         $this->route = 'admin.sites';
         $this->buscar_em = 'nome';
     }
@@ -57,7 +58,7 @@ class SitesController extends CrudController
         unset($data['y1']);
         unset($data['y2']);
 
-        if ($this->model->where('id', $id)->update($data)) {
+        if ($this->repository->where('id', $id)->update($data)) {
             return redirect()->route($this->route . '.index')->with('status', 'Post alterado com sucesso!');
         } else {
             return redirect()->route($this->route . '.index')->with('status', 'Ocorreu um erro ao inserir o Post');

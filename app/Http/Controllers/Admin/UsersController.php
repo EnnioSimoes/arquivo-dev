@@ -20,7 +20,7 @@ class UsersController extends CrudController
 
         $this->roles = $roles;
         $this->data['titulo'] = 'Usuários';
-        $this->model = $users;
+        $this->repository = $users;
         $this->route = 'admin.users';
         $this->buscar_em = 'name';
         $this->service = $service;
@@ -34,10 +34,11 @@ class UsersController extends CrudController
     public function create()
     {
         $titulo = 'Editar Usuário';
-        $roles = $this->roles->get();
+        $roles = $this->roles->all();
         $titulo = 'Novo Usuário';
+        $data = null;
         $usuario_logado = $this->data['usuario_logado'];
-        return view($this->route . '.create', compact('titulo', 'usuario_logado', 'roles'));
+        return view($this->route . '.create', compact('data', 'titulo', 'usuario_logado', 'roles'));
     }
 
     /**
@@ -49,14 +50,14 @@ class UsersController extends CrudController
     public function edit($id)
     {
         $titulo = 'Editar Usuário';
-        $roles = $this->roles->get();
+        $roles = $this->roles->all();
         $usuario_logado = $this->data['usuario_logado'];
-        $data = $this->model->findWhere(
+        $data = $this->repository->findWhere(
             ['id' => $id],
             ['id', 'name', 'sobrenome', 'email', 'avatar', 'remember_token', 'created_at', 'updated_at', 'ativo']
         )[0];
         // dd($data[0]);
-        // $data = $this->model->where('id', $id)
+        // $data = $this->repository->where('id', $id)
         // ->select(['id', 'name', 'sobrenome', 'email', 'avatar', 'remember_token', 'created_at', 'updated_at', 'ativo'])
         // ->get()[0];
         // $user_roles = $data->roles;
@@ -77,7 +78,7 @@ class UsersController extends CrudController
         unset($data['repetir-password']);
         unset($data['roles']);
 
-        $user = $this->model->create($data);
+        $user = $this->repository->create($data);
         if ($user) {
             foreach ($request->roles as $roles) {
                 $user->attachRole($roles);
@@ -96,8 +97,10 @@ class UsersController extends CrudController
         unset($data['repetir-password']);
         unset($data['roles']);
 
-        if ($this->model->where('id', $id)->update($data)) {
-            $user = $this->model->where('id', $id)->get()[0];
+        if ($this->repository->update($data, $id)) {
+            // $user = $this->repository->where('id', $id)->get()[0];
+            $user = $this->repository->find($id);
+            // dd($user);
             if(count($request->roles) > 0) {
                 if(count($user->roles) > 0) {
                     foreach ($user->roles as $remove_roles) {

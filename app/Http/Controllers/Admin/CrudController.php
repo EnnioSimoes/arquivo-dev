@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 abstract class CrudController extends Controller
 {
     protected $service = null;
-    protected $model = null;
+    protected $repository = null;
     protected $route = null;
     protected $titulo;
     protected $data = [];
@@ -29,7 +29,7 @@ abstract class CrudController extends Controller
      */
     public function index()
     {
-        $this->data['data'] = $this->model->orderBy('id', 'desc')->paginate(9);
+        $this->data['data'] = $this->repository->orderBy('id', 'desc')->paginate(9);
         return view($this->route . '.index')->with($this->data);
     }
 
@@ -50,7 +50,7 @@ abstract class CrudController extends Controller
         $dados = $request->all();
         unset($dados['_token']);
 
-        if($this->model->create($dados)) {
+        if($this->repository->create($dados)) {
             return redirect()->route($this->route . '.index')->with('status', 'Registro inserido com sucesso!');
         } else {
             return redirect()->route($this->route . '.index')->with('status', 'Ocorreu um erro ao inserir o registro');
@@ -66,7 +66,7 @@ abstract class CrudController extends Controller
     public function edit($id)
     {
         $titulo = 'Editar' . $this->data['titulo'];
-        $data = $this->model->find($id);
+        $data = $this->repository->find($id);
         $usuario_logado = $this->data['usuario_logado'];
         return view($this->route . '.edit', compact('data', 'titulo', 'descricao', 'usuario_logado'));
     }
@@ -84,7 +84,7 @@ abstract class CrudController extends Controller
         $data = $request->all();
         unset($data['_token']);
 
-        if ($this->model->where('id', $id)->update($data)) {
+        if ($this->repository->update($data, $id)) {
             return redirect()->route($this->route . '.index')->with('status-ok', 'Registro alterado com sucesso!');
         } else {
             return redirect()->route($this->route . '.index')->with('status-erro', 'Ocorreu um erro ao inserir o Post');
@@ -99,7 +99,7 @@ abstract class CrudController extends Controller
      */
     public function delete($id)
     {
-        if ($this->model->where('id', '=', $id)->delete()) {
+        if ($this->repository->delete($id)) {
             return redirect()->route($this->route . '.index')->with('status-ok', 'Registro excluído com sucesso!');
         } else {
             return redirect()->route($this->route . '.index')->with('status-erro', 'Ocorreu um erro ao excluir o Post');
@@ -114,13 +114,15 @@ abstract class CrudController extends Controller
      */
     public function show($id)
     {
-        $post = $this->model->find($id);
+        $post = $this->repository->find($id);
         return $post;
     }
 
    public function search(Request $request)
    {
-       $this->data['data'] = $this->model->where($this->buscar_em, 'like', '%' . $request->table_search . '%')->paginate(9);
+    //    findWhere(array $where, $columns = ['*'])
+       $this->data['data'] = $this->repository->findWhere([$this->buscar_em => $request->table_search])->paginate(9);
+    //    $this->data['data'] = $this->repository->where($this->buscar_em, 'like', '%' . $request->table_search . '%')->paginate(9);
        $this->data['search'] = $request->table_search;
        return view($this->route . '.index')->with($this->data);
    }

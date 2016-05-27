@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Model\Categoria;
-use App\Model\Post;
-use App\Model\Site;
+use App\Repositories\CategoriaRepository;
+// use App\Model\Categoria;
+use App\Repositories\PostRepository;
+// use App\Model\Post;
+use App\Repositories\SiteRepository;
+// use App\Model\Site;
 use App\Services\PostService;
 use Illuminate\Http\Request;
 
@@ -13,14 +16,14 @@ class PostsController extends CrudController
     public $posts;
     public $categorias;
 
-    public function __construct(Request $request, PostService $service, Post $posts, Categoria $categorias, Site $site)
+    public function __construct(Request $request, PostService $service, PostRepository $posts, CategoriaRepository $categorias, SiteRepository $site)
     {
         parent::__construct($request);
 
         $this->data['titulo'] = 'Posts';
         $this->categorias = $categorias;
         $this->sites = $site;
-        $this->model = $posts;
+        $this->repository = $posts;
         $this->service = $service;
         $this->route = 'admin.posts';
         $this->buscar_em = 'titulo';
@@ -53,7 +56,7 @@ class PostsController extends CrudController
         $destino = 'assets/images/posts/';
         $data = $this->service->cropImage($request, $destino);
 
-        if ($this->model->create($data)) {
+        if ($this->repository->create($data)) {
             return redirect()->route($this->route . '.index')->with('status-ok', 'Post inserido com sucesso!');
         } else {
             return redirect()->route($this->route . '.index')->with('status-erro', 'Ocorreu um erro ao inserir o Post');
@@ -68,7 +71,7 @@ class PostsController extends CrudController
      */
     public function edit($id)
     {
-        $data = $this->model->find($id);
+        $data = $this->repository->find($id);
         $titulo = 'Post';
         $descricao = 'Editar Post';
         $usuario_logado = $this->data['usuario_logado'];
@@ -90,7 +93,7 @@ class PostsController extends CrudController
         $destino = 'assets/images/posts/';
         $data = $this->service->cropImage($request, $destino);
 
-        if ($this->model->where('id', $id)->update($data)) {
+        if ($this->repository->update($data, $id)) {
             return redirect()->route($this->route . '.index')->with('status-ok', 'Post alterado com sucesso!');
         } else {
             return redirect()->route($this->route . '.index')->with('status-erro', 'Ocorreu um erro ao inserir o Post');

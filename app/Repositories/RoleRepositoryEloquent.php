@@ -24,13 +24,6 @@ class RoleRepositoryEloquent extends BaseRepository implements RoleRepository
         return Role::class;
     }
 
-    public function get()
-    {
-        return $this->model->get();
-    }
-
-
-
     /**
      * Boot up the repository, pushing criteria
      */

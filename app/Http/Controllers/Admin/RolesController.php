@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Model\Role;
+use App\Repositories\RoleRepository;
 use Illuminate\Http\Request;
-use App\Model\Permission;
+use App\Repositories\PermissionRepository;
+// use App\Model\Permission;
 use DB;
 
 class RolesController extends CrudController
 {
     public $data = [];
 
-    public function __construct(Request $request, Role $roles, Permission $permission)
+    public function __construct(Request $request, RoleRepository $roles, PermissionRepository $permission)
     {
         parent::__construct($request);
 
         $this->data['titulo'] = 'Papéis';
-        $this->model = $roles;
+        $this->repository = $roles;
         $this->permission = $permission;
         $this->route = 'admin.roles';
         $this->buscar_em = 'name';
@@ -25,8 +26,8 @@ class RolesController extends CrudController
     public function create()
     {
         $this->data['titulo'] = 'Adicionar ' . $this->data['titulo'];
-        $this->data['roles'] = $this->model->get();
-        $this->data['permissions'] = $this->permission->get();
+        // $this->data['roles'] = $this->repository->all();
+        $this->data['permissions'] = $this->permission->all();
 
         // dd($this->data['permissions'][0]->permissions[0]->name);
 
@@ -43,7 +44,7 @@ class RolesController extends CrudController
         }
         unset($role['permission']);
 
-        $role = $this->model->create($role);
+        $role = $this->repository->create($role);
 
         if(isset($permissions)) {
             foreach ($permissions as $permission) {
@@ -56,18 +57,18 @@ class RolesController extends CrudController
 
     public function manager()
     {
-
-        // $this->data['roles'] = $this->model->get();
-        $this->data['roles'] = $this->model->orderBy('name', 'asc')->get();
-        $this->data['permissions'] = $this->permission->orderBy('name', 'asc')->get();
+        // $this->data['roles'] = $this->repository->get();
+        $this->data['roles'] = $this->repository->orderBy('name', 'asc')->all();
+        $this->data['permissions'] = $this->permission->orderBy('name', 'asc')->all();
 
         return view('admin.roles.manager', $this->data);
     }
 
     public function edit($id)
     {
-        $this->data['data'] = $this->model->find($id);
-        $this->data['permissions'] = $this->permission->get();
+        $this->data['data'] = $this->repository->find($id);
+        $this->data['permissions'] = $this->permission->all();
+        // dd($this->data['data']->permission()->get());
         return view('admin.roles.edit', $this->data);
     }
 
@@ -82,8 +83,8 @@ class RolesController extends CrudController
 
         DB::beginTransaction();
         try {
-            $this->model->where('id', $id)->update($role);
-            $role = $this->model->find($id);
+            $this->repository->update($role, $id);
+            $role = $this->repository->find($id);
 
             $role->permission()->sync($permissions);
             DB::commit();
@@ -94,11 +95,15 @@ class RolesController extends CrudController
         }
     }
 
+    /**
+     * Recebe Ajax para atualizar lista de permissions de uma determinada Role
+     * @param  Request $request [Post AJAX]
+     */
     public function ajaxStore(Request $request)
     {
         $dados = $request->all();
         // dd($dados["permission_id"]);
-        $role = $this->model->find($dados['role_id']);
+        $role = $this->repository->find($dados['role_id']);
 
         $role->permission()->sync($dados['permission_id']);
 

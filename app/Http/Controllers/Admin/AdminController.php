@@ -28,12 +28,6 @@ class AdminController extends Controller
      */
     public function index(Request $request)
     {
-//            dd($request->user());
-
-        $user = new \App\Model\User;
-        $v = $user->find(1);
-//        dd($v->hasRole(["admin"], true));
-
         $this->data['tasks'] = [
             [
                 'name' => 'Design New Dashboard',
