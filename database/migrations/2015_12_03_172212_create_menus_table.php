@@ -18,6 +18,8 @@ class CreateMenusTable extends Migration
 
             $table->increments('id');
             $table->string('titulo', 60);
+            $table->string('slug', 60)->unique();
+            $table->text('estrutura');
             $table->boolean('ativo')->default(1);
         });
     }

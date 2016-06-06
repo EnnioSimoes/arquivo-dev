@@ -95,6 +95,8 @@ $factory->define(App\Model\Site::class, function (Faker\Generator $faker) {
 $factory->define(App\Model\Menu::class, function (Faker\Generator $faker) {
     return [
         'titulo' => $faker->word,
+        'slug' => $faker->slug,
+        'estrutura' => $faker->word,
         'ativo' => rand(0, 1),
     ];
 });

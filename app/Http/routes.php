@@ -85,4 +85,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'as' => 'admin.'], fu
     Route::post('permissions/update/{id}', ['as' => 'permissions.update', 'uses' => 'Admin\PermissionController@update']);
     Route::get('permissions/search/', ['as' => 'permissions.search', 'uses' => 'Admin\PermissionController@search']);
 
+    Route::get('menus', ['as' => 'menus.index', 'uses' => 'Admin\MenusController@index']);
 });

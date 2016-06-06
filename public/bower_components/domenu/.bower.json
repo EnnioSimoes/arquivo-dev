@@ -1,0 +1,15 @@
+{
+  "name": "domenu",
+  "homepage": "https://github.com/mechanicious/domenu",
+  "version": "0.95.77",
+  "_release": "0.95.77",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.95.77",
+    "commit": "33b4bfd85144ec345d463cd136662f90d9ba4353"
+  },
+  "_source": "https://github.com/mechanicious/domenu.git",
+  "_target": "~0.95.77",
+  "_originalSource": "domenu",
+  "_direct": true
+}

@@ -12,7 +12,9 @@ class Menu extends Model implements Transformable
 
     protected $fillable = [
         'titulo',
-        'ativo'
+        'slug',
+        'ativo',
+        'estrutura'
     ];
 
     public $timestamps = false;

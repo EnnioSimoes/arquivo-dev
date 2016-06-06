@@ -23,7 +23,7 @@ class UserTableSeeder extends Seeder
             'password' => bcrypt(123456),
             'remember_token' => str_random(10),
             'ativo' => 1,
-        ]);
+        ])->attachRole(1);
         factory(User::class)->create([
             'name' => 'Usuário Zuado',
             'sobrenome' => 'Big Ass User',

@@ -44,6 +44,9 @@
         <li>
             <a href="{{ route('admin.sites.index') }}"><i class="fa fa-link"></i> <span>Sites</span></a>
         </li>
+        <li>
+            <a href="{{ route('admin.menus.index') }}"><i class="fa fa-link"></i> <span>Menus</span></a>
+        </li>
         @role('admin')
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Controle de acesso</span> <i class="fa fa-angle-left pull-right"></i></a>

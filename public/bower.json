@@ -1,0 +1,21 @@
+{
+  "name": "ArquivoDev",
+  "version": "0.0.0",
+  "homepage": "https://github.com/EnnioSimoes/arquivo-dev",
+  "authors": [
+    "Ennio de Oliveria Simões"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "admin-lte": "~2.3.2",
+    "domenu": "~0.95.77",
+    "select2": "~4.0.3"
+  }
+}
