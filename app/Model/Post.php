@@ -34,7 +34,7 @@ class Post extends Model implements Transformable
 		return $this->belongsTo(Categoria::class);
 	}
 
-	public function usuario() {
+	public function user() {
 		return $this->belongsTo(User::class);
 	}
 

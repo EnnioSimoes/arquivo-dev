@@ -69,5 +69,4 @@ CanResetPasswordContract
     {
         return $this->belongsToMany('App\Model\Role');
     }
-
 }

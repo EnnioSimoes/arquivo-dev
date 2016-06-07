@@ -65,7 +65,7 @@ $factory->define(App\Model\Post::class, function (Faker\Generator $faker) {
         'dt_cadastro' => $faker->dateTime,
         'dt_alteracao' => '',
         'dt_exclusao' => '',
-        'cadastro_usuario_id' => null,
+        'cadastro_usuario_id' => rand(1, 15),
         'alteracao_usuario_id' => null,
         'exclusao_usuario_id' => null,
         'ativo' => rand(0, 1),

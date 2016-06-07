@@ -31,7 +31,7 @@ class UserTableSeeder extends Seeder
             'password' => bcrypt(123456),
             'remember_token' => str_random(10),
             'ativo' => 1,
-        ]);
+        ])->attachRole(2);
 
         factory(User::class, 15)->create();
     }
