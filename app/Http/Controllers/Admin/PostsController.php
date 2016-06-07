@@ -30,6 +30,21 @@ class PostsController extends CrudController
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        if($this->data['usuario_logado']->hasRole('admin')) {
+            $this->data['data'] = $this->repository->orderBy('id', 'desc')->paginate(9);
+        } else {
+            $this->data['data'] = $this->repository->paginacaoPostUser($this->data['usuario_logado']->id);
+        }
+        return view($this->route . '.index')->with($this->data);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -37,7 +52,7 @@ class PostsController extends CrudController
     public function create()
     {
         $categorias = $this->categorias->lists('nome', 'id');
-        $sites = $this->sites->lists('nome', 'id');
+        $sites = $this->sites->listSiteUser($this->data['usuario_logado']->id);
         $titulo = 'Post';
         $descricao = 'Criar Novo Post';
         $usuario_logado = $this->data['usuario_logado'];
@@ -72,13 +87,17 @@ class PostsController extends CrudController
     public function edit($id)
     {
         $data = $this->repository->find($id);
-        $titulo = 'Post';
-        $descricao = 'Editar Post';
-        $usuario_logado = $this->data['usuario_logado'];
+        if($data->cadastro_usuario_id == $this->data['usuario_logado']->id || $this->data['usuario_logado']->hasRole('admin')) {
+            $titulo = 'Post';
+            $descricao = 'Editar Post';
+            $usuario_logado = $this->data['usuario_logado'];
 
-        $categorias = $this->categorias->lists('nome', 'id');
-        $sites = $this->sites->lists('nome', 'id');
-        return view($this->route . '.edit', compact('usuario_logado', 'data', 'categorias', 'sites', 'titulo', 'descricao'));
+            $categorias = $this->categorias->lists('nome', 'id');
+            $sites = $this->sites->listSiteUser($this->data['usuario_logado']->id);
+            return view($this->route . '.edit', compact('usuario_logado', 'data', 'categorias', 'sites', 'titulo', 'descricao'));
+        } else {
+            abort(403);
+        }
     }
 
     /**

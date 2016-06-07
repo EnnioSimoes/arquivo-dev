@@ -24,7 +24,19 @@ class PostRepositoryEloquent extends BaseRepository implements PostRepository
         return Post::class;
     }
 
-    
+    /**
+     * Retorna apenas posts do usuário
+     * @param  integer  $id        id do usuario
+     * @param  integer $porPagina Quantos posts por pagina
+     * @return Object             Objeto do Eloquent para paginação
+     */
+    public function paginacaoPostUser($id, $porPagina = 9)
+    {
+        $data = $this->model->where(['cadastro_usuario_id' => $id])->paginate($porPagina);
+        return $data;
+    }
+
+
 
     /**
      * Boot up the repository, pushing criteria

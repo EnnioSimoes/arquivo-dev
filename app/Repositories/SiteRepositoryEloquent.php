@@ -24,7 +24,16 @@ class SiteRepositoryEloquent extends BaseRepository implements SiteRepository
         return Site::class;
     }
 
-    
+    /**
+     * [listSiteUser description]
+     * @param  Integer $id Id do usuário autenticado
+     * @return Object Collection     Objeto com array items contendo referência id => nome
+     */
+    public function listSiteUser($id)
+    {
+        $data = $this->model->where(['cadastro_usuario_id' => $id])->lists('nome', 'id');
+        return $data;
+    }
 
     /**
      * Boot up the repository, pushing criteria
