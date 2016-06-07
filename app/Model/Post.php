@@ -28,7 +28,7 @@ class Post extends Model implements Transformable
 		'ativo',
 	];
 
-	public $timestamps = false;
+	public $timestamps = true;
 
 	public function categoria() {
 		return $this->belongsTo(Categoria::class);

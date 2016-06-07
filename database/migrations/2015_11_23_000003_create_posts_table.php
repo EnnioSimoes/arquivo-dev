@@ -25,9 +25,8 @@ class CreatePostsTable extends Migration
             $table->integer('gostei');
             $table->integer('categoria_id')->unsigned()->nullable();
             $table->integer('site_id')->unsigned()->nullable();
-            $table->dateTime('dt_cadastro');
-            $table->dateTime('dt_alteracao');
-            $table->dateTime('dt_exclusao');
+            $table->timestamps();
+            $table->dateTime('deleted_at');
             $table->integer('cadastro_usuario_id')->unsigned()->nullable();
             $table->integer('alteracao_usuario_id')->unsigned()->nullable();
             $table->integer('exclusao_usuario_id')->unsigned()->nullable();

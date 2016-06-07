@@ -70,7 +70,8 @@ class PostsController extends CrudController
     {
         $destino = 'assets/images/posts/';
         $data = $this->service->cropImage($request, $destino);
-
+        $data['cadastro_usuario_id'] = $this->data['usuario_logado']->id;
+        // dd($data);
         if ($this->repository->create($data)) {
             return redirect()->route($this->route . '.index')->with('status-ok', 'Post inserido com sucesso!');
         } else {

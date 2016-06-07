@@ -43,11 +43,12 @@
     {!! Form::label('Twitter', 'Twitter:') !!}
     {!! Form::text('twitter', null, ['class'=>'form-control']) !!}
 </div>
+@role('admin')
 <div class="form-group">
     {!! Form::label('Status', 'Status:') !!}
     {!! Form::select('ativo', [1 => 'ativo', 2 => 'inativo'], null, ['class'=>'form-control']) !!}
 </div>
-
+@endrole
 {{-- HIDDENS --}}
     {!! Form::hidden('x1') !!}
     {!! Form::hidden('y1') !!}
