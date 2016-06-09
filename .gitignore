@@ -8,3 +8,4 @@ public/dev/grunt/node_modules/*
 /nbproject/private/
 .DS_Store
 public/assets/images/avatar/*
+public/assets/images/posts/*
