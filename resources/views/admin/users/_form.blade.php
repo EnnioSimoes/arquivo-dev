@@ -3,7 +3,7 @@
         <div class="form-group">
             {!! Form::label('Imagem', 'Imagem:') !!}
                 <br>
-                    <img id="imageAvatar" src="{{ asset('assets/images/avatar') }}/{{ $data->avatar }}" style="max-width: 500px; max-height: 400px;">
+                    <img id="imagePreview" src="{{ asset('assets/images/avatar') }}/{{ $data->avatar }}" style="max-width: 500px; max-height: 400px;">
                 <div style="max-width: 500px; max-height: 500px;">
                     <canvas style="max-width: 500px; max-height: 500px;" id="imageCanvas" class="hidden"></canvas>
                 </div>

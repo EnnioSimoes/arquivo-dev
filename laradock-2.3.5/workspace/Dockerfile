@@ -34,8 +34,6 @@ RUN apt-get update && apt-get install -y --force-yes \
         php7.0-sqlite3 \
         php7.0-zip \
         php7.0-memcached \
-        php7.0-gd \
-        php7.0-tidy \
         sqlite3 \
         libsqlite3-dev \
         git \
@@ -53,9 +51,6 @@ RUN apt-get clean
 RUN npm install -g \
     gulp \
     bower
-
-# Link the global gulp to be used locally
-RUN npm link gulp
 
 # Add a symbolic link for Node
 RUN ln -s /usr/bin/nodejs /usr/bin/node
